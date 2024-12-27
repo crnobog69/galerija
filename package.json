@@ -19,8 +19,6 @@
     "motion": "^11.15.0"
   },
   "devDependencies": {
-    "husky": "^9.1.7",
-    "prettier": "^3.4.2",
-    "prettierrc": "^0.0.0-5"
+    "husky": "^9.1.7"
   }
 }
