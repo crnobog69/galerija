@@ -1,1 +1,4 @@
-bun prittier --write .
+#!/bin/sh
+
+# Покретање Prettier на свим датотекама
+bun prettier --write .
