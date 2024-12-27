@@ -1,1 +1,11 @@
-<svg fill="#ffffff" height="200px" width="200px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" xml:space="preserve" stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M19,4V3H5v1H4v17h4v-1h1v-1h1v-1h1v-1h1h1v1h1v1h1v1h1v1h4V4H19z M18,18h-1v-1h-1v-1h-1v-1h-1v-1h-4v1H9v1H8v1H7v1H6V6h1V5 h10v1h1V18z"></path> </g></svg>
+<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <g id="color">
+    <path fill="#FFFFFF" stroke="none" d="M38.4549,57.1464l22.2257-38.4961c1.0911-1.8898-0.2728-4.252-2.4549-4.252l-44.4514,0 c-2.1821,0-3.5459,2.3622-2.4549,4.252l22.2257,38.4961C34.6362,59.0362,37.3638,59.0362,38.4549,57.1464z"/>
+  </g>
+  <g id="hair"/>
+  <g id="skin"/>
+  <g id="skin-shadow"/>
+  <g id="line">
+    <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" d="M38.4549,57.1464l22.2257-38.4961 c1.0911-1.8898-0.2728-4.252-2.4549-4.252l-44.4514,0c-2.1821,0-3.5459,2.3622-2.4549,4.252l22.2257,38.4961 C34.6362,59.0362,37.3638,59.0362,38.4549,57.1464z"/>
+  </g>
+</svg>
