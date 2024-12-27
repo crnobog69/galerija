@@ -1,0 +1,16 @@
+---
+import PhotoCard from './PhotoCard.astro';
+import type { Photo } from '../../types';
+
+interface Props {
+  photos: Photo[];
+}
+
+const { photos } = Astro.props;
+---
+
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {photos.map((photo, index) => (
+    <PhotoCard {...photo} index={index} />
+  ))}
+</div>

@@ -1,0 +1,46 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  title: string;
+}
+
+const { src, alt, title } = Astro.props;
+---
+
+<div 
+  class="photo-card relative overflow-hidden rounded-lg shadow-lg bg-white dark:bg-gray-800 transition-transform duration-300 hover:scale-[1.02]"
+  data-animate
+>
+  <img 
+    src={src} 
+    alt={alt} 
+    class="w-full h-64 object-cover"
+    loading="lazy"
+  />
+  <div class="p-4">
+    <h3 class="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+  </div>
+</div>
+
+<style>
+  .photo-card {
+    view-timeline-name: --card;
+    view-timeline-axis: block;
+    animation-timeline: --card;
+    animation-name: show;
+    animation-range: entry 25% cover 35%;
+    animation-fill-mode: both;
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

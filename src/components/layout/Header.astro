@@ -1,0 +1,14 @@
+---
+import ThemeToggle from '../theme/ThemeToggle.astro';
+import Logo from './Logo.astro';
+import Container from '../ui/Container.astro';
+---
+
+<header class="fixed top-0 z-50 w-full border-b border-gray-100/10 bg-white/80 backdrop-blur-lg dark:bg-black/80">
+  <Container>
+    <div class="flex h-14 items-center justify-between">
+      <Logo />
+      <ThemeToggle />
+    </div>
+  </Container>
+</header>

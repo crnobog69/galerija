@@ -1,0 +1,176 @@
+---
+---
+<div 
+  id="image-modal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm"
+>
+  <div class="relative w-full max-w-7xl px-4">
+    <div class="relative aspect-[3/2] w-full">
+      <img 
+        id="modal-image"
+        src=""
+        alt=""
+        class="h-full w-full object-contain"
+      />
+      
+      <!-- Navigation Buttons -->
+      <button
+        id="prev-button"
+        class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+        aria-label="Previous image"
+      >
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button
+        id="next-button"
+        class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+        aria-label="Next image"
+      >
+        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="absolute right-4 top-4 flex space-x-2">
+      <button
+        id="open-button"
+        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+        aria-label="Open in new tab"
+      >
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+        </svg>
+      </button>
+      
+      <button
+        id="download-button"
+        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+        aria-label="Download image"
+      >
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+      </button>
+      
+      <button
+        id="close-button"
+        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+        aria-label="Close modal"
+      >
+        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let currentIndex = 0;
+  let images: { src: string; alt: string; title: string }[] = [];
+
+  const modal = document.getElementById('image-modal');
+  const modalImage = document.getElementById('modal-image') as HTMLImageElement;
+  const prevButton = document.getElementById('prev-button');
+  const nextButton = document.getElementById('next-button');
+  const closeButton = document.getElementById('close-button');
+  const openButton = document.getElementById('open-button');
+  const downloadButton = document.getElementById('download-button');
+
+  // Initialize image data from PhotoCards
+  document.addEventListener('DOMContentLoaded', () => {
+    const photoCards = document.querySelectorAll('[data-photo]');
+    images = Array.from(photoCards).map(card => ({
+      src: card.getAttribute('data-src') || '',
+      alt: card.getAttribute('data-alt') || '',
+      title: card.getAttribute('data-title') || ''
+    }));
+  });
+
+  function updateImage() {
+    if (modalImage && images[currentIndex]) {
+      modalImage.src = images[currentIndex].src;
+      modalImage.alt = images[currentIndex].alt;
+    }
+  }
+
+  function showModal(index: number) {
+    currentIndex = index;
+    updateImage();
+    modal?.classList.remove('hidden');
+    modal?.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function hideModal() {
+    modal?.classList.add('hidden');
+    modal?.classList.remove('flex');
+    document.body.style.overflow = '';
+  }
+
+  // Event Listeners
+  prevButton?.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateImage();
+  });
+
+  nextButton?.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateImage();
+  });
+
+  closeButton?.addEventListener('click', hideModal);
+
+  openButton?.addEventListener('click', () => {
+    window.open(images[currentIndex].src, '_blank');
+  });
+
+  downloadButton?.addEventListener('click', async () => {
+    try {
+      const response = await fetch(images[currentIndex].src);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `image-${currentIndex + 1}.jpg`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('Error downloading image:', error);
+    }
+  });
+
+  // Close modal when clicking outside
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      hideModal();
+    }
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (!modal?.classList.contains('hidden')) {
+      switch (e.key) {
+        case 'ArrowLeft':
+          prevButton?.click();
+          break;
+        case 'ArrowRight':
+          nextButton?.click();
+          break;
+        case 'Escape':
+          hideModal();
+          break;
+      }
+    }
+  });
+
+  // Expose showModal function globally
+  window.showImageModal = showModal;
+</script>

@@ -1,0 +1,54 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  title: string;
+  index: number;
+}
+
+const { src, alt, title, index } = Astro.props;
+---
+
+<div 
+  class="group relative overflow-hidden rounded-sm bg-white dark:bg-black cursor-pointer"
+  data-animate
+  data-photo
+  data-src={src}
+  data-alt={alt}
+  data-title={title}
+  onclick={`window.showImageModal(${index})`}
+>
+  <div class="aspect-square overflow-hidden">
+    <img 
+      src={src} 
+      alt={alt} 
+      class="h-full w-full object-cover transition-all duration-300 group-hover:scale-[1.02]"
+      loading="lazy"
+    />
+  </div>
+  <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+    <h3 class="text-sm font-medium text-white">{title}</h3>
+  </div>
+</div>
+
+<style>
+  [data-animate] {
+    view-timeline-name: --card;
+    view-timeline-axis: block;
+    animation-timeline: --card;
+    animation-name: show;
+    animation-range: entry 25% cover 35%;
+    animation-fill-mode: both;
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
