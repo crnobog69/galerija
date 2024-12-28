@@ -1,12 +1,9 @@
 ---
 ---
-<div 
-  id="image-modal"
-  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm"
->
-  <div class="relative w-full max-w-7xl px-4">
-    <!-- Action Buttons - Moved above the image -->
-    <div id="action-buttons" class="mb-4 flex justify-end">
+<div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+  <div class="relative w-full max-w-7xl h-full flex flex-col">
+    <!-- Action Buttons -->
+    <div id="action-buttons" class="flex justify-end mb-2">
       <div class="flex space-x-2">
         <button
           id="open-button"
@@ -39,42 +36,47 @@
         </button>
       </div>
     </div>
-
-    <div class="relative aspect-[3/2] w-full">
-      <img 
-        id="modal-image"
-        src=""
-        alt=""
-        class="h-full w-full object-contain"
-      />
-      
+    <!-- Image and Navigation Container -->
+    <div class="relative flex-1 overflow-hidden flex flex-col image-container">
+      <img id="modal-image" src="" alt="" class="max-w-full max-h-full object-contain m-auto" />
       <!-- Navigation Buttons -->
-      <button
-        id="prev-button"
-        class="absolute left-4 top-1/2 -translate-y-1/2 rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
-        aria-label="Previous image"
-      >
-        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <button
-        id="next-button"
-        class="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
-        aria-label="Next image"
-      >
-        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
+      <div class="absolute inset-x-0 bottom-0 flex justify-between p-2 navigation-buttons">
+        <button id="prev-button" class="rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button id="next-button" class="rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity">
+          <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
 <style>
-  #image-modal:not(.flex) #action-buttons {
-    display: none;
+  .image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 4rem); /* Subtract the padding from the modal */
+  }
+  
+  #modal-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  
+  @media (max-width: 768px) {
+    .navigation-buttons {
+      position: static;
+    }
+    .image-container {
+      flex-direction: column;
+    }
   }
 </style>
 
@@ -183,3 +185,4 @@
   // Expose showModal function globally
   (window as any).showImageModal = showModal;
 </script>
+
