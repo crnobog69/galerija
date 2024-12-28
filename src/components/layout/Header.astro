@@ -8,7 +8,10 @@ import Container from '../ui/Container.astro';
   <Container>
     <div class="flex h-14 items-center justify-between">
       <Logo />
-      <ThemeToggle />
+      <nav class="flex items-center space-x-4">
+        <a href="/audio" class="text-gray-900 dark:text-white hover:underline">Аудио</a>
+        <ThemeToggle />
+      </nav>
     </div>
   </Container>
 </header>
