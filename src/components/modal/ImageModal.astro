@@ -6,6 +6,24 @@
     <div id="action-buttons" class="flex justify-end mb-2">
       <div class="flex space-x-2">
         <button
+          id="zoom-in-button"
+          class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          aria-label="Zoom in"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+          </svg>
+        </button>
+        <button
+          id="zoom-out-button"
+          class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          aria-label="Zoom out"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM5 10h14" />
+          </svg>
+        </button>
+        <button
           id="open-button"
           class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
           aria-label="Open in new tab"
@@ -14,7 +32,6 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
           </svg>
         </button>
-        
         <button
           id="download-button"
           class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
@@ -24,7 +41,6 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
           </svg>
         </button>
-        
         <button
           id="close-button"
           class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
@@ -38,7 +54,9 @@
     </div>
     <!-- Image and Navigation Container -->
     <div class="relative flex-1 overflow-hidden flex flex-col image-container">
-      <img id="modal-image" src="" alt="" class="max-w-full max-h-full object-contain m-auto" />
+      <div id="image-wrapper" class="w-full h-full overflow-auto">
+        <img id="modal-image" src="" alt="" class="max-w-none max-h-none object-contain m-auto transition-transform duration-200 ease-in-out" />
+      </div>
       <!-- Navigation Buttons -->
       <div class="absolute inset-x-0 bottom-0 flex justify-between p-2 navigation-buttons">
         <button id="prev-button" class="rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity">
@@ -64,6 +82,12 @@
     height: calc(100vh - 4rem); /* Subtract the padding from the modal */
   }
   
+  #image-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
   #modal-image {
     max-width: 100%;
     max-height: 100%;
@@ -83,15 +107,21 @@
 <script>
   let currentIndex = 0;
   let images: { src: string; alt: string; title: string }[] = [];
+  let currentZoom = 1;
+  const zoomStep = 0.1;
+  const maxZoom = 3;
+  const minZoom = 0.5;
 
   const modal = document.getElementById('image-modal');
   const modalImage = document.getElementById('modal-image') as HTMLImageElement;
+  const imageWrapper = document.getElementById('image-wrapper') as HTMLDivElement;
   const prevButton = document.getElementById('prev-button');
   const nextButton = document.getElementById('next-button');
   const closeButton = document.getElementById('close-button');
   const openButton = document.getElementById('open-button');
   const downloadButton = document.getElementById('download-button');
-  const actionButtons = document.getElementById('action-buttons');
+  const zoomInButton = document.getElementById('zoom-in-button');
+  const zoomOutButton = document.getElementById('zoom-out-button');
 
   // Initialize image data from PhotoCards
   document.addEventListener('DOMContentLoaded', () => {
@@ -107,6 +137,7 @@
     if (modalImage && images[currentIndex]) {
       modalImage.src = images[currentIndex].src;
       modalImage.alt = images[currentIndex].alt;
+      resetZoom();
     }
   }
 
@@ -122,6 +153,31 @@
     modal?.classList.add('hidden');
     modal?.classList.remove('flex');
     document.body.style.overflow = '';
+  }
+
+  function zoomIn() {
+    if (currentZoom < maxZoom) {
+      currentZoom += zoomStep;
+      applyZoom();
+    }
+  }
+
+  function zoomOut() {
+    if (currentZoom > minZoom) {
+      currentZoom -= zoomStep;
+      applyZoom();
+    }
+  }
+
+  function resetZoom() {
+    currentZoom = 1;
+    applyZoom();
+  }
+
+  function applyZoom() {
+    if (modalImage) {
+      modalImage.style.transform = `scale(${currentZoom})`;
+    }
   }
 
   // Event Listeners
@@ -158,6 +214,9 @@
     }
   });
 
+  zoomInButton?.addEventListener('click', zoomIn);
+  zoomOutButton?.addEventListener('click', zoomOut);
+
   // Close modal when clicking outside
   modal?.addEventListener('click', (e) => {
     if (e.target === modal) {
@@ -165,7 +224,7 @@
     }
   });
 
-  // Keyboard navigation
+  // Keyboard navigation and zoom
   document.addEventListener('keydown', (e) => {
     if (!modal?.classList.contains('hidden')) {
       switch (e.key) {
@@ -178,7 +237,51 @@
         case 'Escape':
           hideModal();
           break;
+        case '+':
+          zoomIn();
+          break;
+        case '-':
+          zoomOut();
+          break;
       }
+    }
+  });
+
+  // Mouse wheel zoom
+  imageWrapper?.addEventListener('wheel', (e) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      zoomIn();
+    } else {
+      zoomOut();
+    }
+  });
+
+  // Touch zoom
+  let initialDistance = 0;
+  imageWrapper?.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 2) {
+      initialDistance = Math.hypot(
+        e.touches[0].pageX - e.touches[1].pageX,
+        e.touches[0].pageY - e.touches[1].pageY
+      );
+    }
+  });
+
+  imageWrapper?.addEventListener('touchmove', (e) => {
+    if (e.touches.length === 2) {
+      const currentDistance = Math.hypot(
+        e.touches[0].pageX - e.touches[1].pageX,
+        e.touches[0].pageY - e.touches[1].pageY
+      );
+      
+      if (currentDistance > initialDistance) {
+        zoomIn();
+      } else {
+        zoomOut();
+      }
+      
+      initialDistance = currentDistance;
     }
   });
 
