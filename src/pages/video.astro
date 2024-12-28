@@ -1,0 +1,314 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Container from '../components/ui/Container.astro';
+
+interface Video {
+  id: string;
+  title: string;
+  description: string;
+  videoSrc: string;
+}
+
+const videos = [
+  {
+    id: "1",
+    title: "Токијски Злодух",
+    description: "arima.mp4",
+    videoSrc: "https://i.imgur.com/EPmYe83.mp4"
+  },
+  {
+    id: "2",
+    title: "Судбина/Велики Поредак",
+    description: "jalter.mp4",
+    videoSrc: "https://i.imgur.com/i9p7Q1h.mp4"
+  },
+  {
+    id: "3",
+    title: "Судбина/Велики Поредак",
+    description: "oberon.mp4",
+    videoSrc: "https://i.imgur.com/DfwYhM6.mp4"
+  },
+  {
+    id: "4",
+    title: "Човек Тестера",
+    description: "makima.mp4",
+    videoSrc: "https://i.imgur.com/h72rp2V.mp4"
+  },
+  {
+    id: "5",
+    title: "Моногатари",
+    description: "monogatari.mp4",
+    videoSrc: "https://i.imgur.com/sRGicMT.mp4"
+  },
+  {
+    id: "6",
+    title: "The Saga of Tanya the Evil",
+    description: "tanya.mp4",
+    videoSrc: "https://i.imgur.com/NH7rHV4.mp4"
+  }
+];
+---
+
+<Layout title="Videos">
+  <Container>
+    <main class="py-8 px-4"> <!-- Adjust padding to match audio.astro -->
+    <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">Видео библиотека</h1>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {videos.map(video => (
+          <div class="video-card bg-[rgba(255,255,255,0.05)] rounded-lg overflow-hidden h-[250px]">
+            <div class="relative w-full h-[180px]">
+              <video 
+                class="absolute top-0 left-0 w-full h-full object-cover"
+                src={video.videoSrc}
+                preload="metadata"
+              >
+                <source src={video.videoSrc} type="video/mp4" />
+              </video>
+              <button 
+                class="play-button absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/60 transition-colors"
+                data-video-src={video.videoSrc}
+              >
+                <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </button>
+            </div>
+            <div class="p-3">
+              <h2 class="text-lg font-medium truncate">{video.title}</h2>
+              <p class="text-sm text-gray-600 dark:text-gray-400 truncate">{video.description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div id="videoModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+        <div class="relative w-full max-w-4xl max-h-[90vh] aspect-video">
+          <button
+            id="modal-close"
+            class="absolute -top-10 right-0 rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <video
+            id="modal-video"
+            class="w-full h-full rounded-lg object-contain"
+            controls
+            playsinline
+          >
+            <source src="" type="video/mp4" />
+          </video>
+        </div>
+      </div>
+    </main>
+  </Container>
+
+  <script>
+    const modal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modal-video') as HTMLVideoElement;
+    const closeButton = document.getElementById('modal-close');
+
+    document.querySelectorAll('.play-button').forEach(button => {
+      button.addEventListener('click', () => {
+        const videoSrc = button.getAttribute('data-video-src');
+        if (videoSrc && modalVideo) {
+          modalVideo.src = videoSrc;
+          modalVideo.volume = 0.5;
+          modal?.classList.remove('hidden');
+          modal?.classList.add('flex');
+        }
+      });
+    });
+
+    closeButton?.addEventListener('click', () => {
+      closeModal();
+    });
+
+    modal?.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    function closeModal() {
+      modal?.classList.add('hidden');
+      modal?.classList.remove('flex');
+      if (modalVideo) {
+        modalVideo.pause();
+      }
+    }
+  </script>
+</Layout>
+
+<style>
+  .video-container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .video-card {
+    background: #f5f5f5; /* Light mode: zinc color from audio.astro */
+    border: 1px solid rgba(0, 0, 0, 0.1); /* Add border to match audio.astro */
+    border-radius: 0.5rem;
+    overflow: hidden;
+    min-height: 250px; /* Increased from 300px */
+    display: flex;
+    flex-direction: column;
+  }
+
+  .video-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  }
+
+  .video-player {
+    width: 100%;
+    height: 200px; /* Decreased from 240px to allow more text space */
+    object-fit: cover;
+  }
+
+  .video-info {
+    padding: 20px; /* Increased padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    line-height: 1.4;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+
+  .video-description {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.5;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+
+  @media (max-width: 1024px) {
+    .video-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .video-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .video-player {
+    width: 100%;
+    max-height: 80vh;
+    aspect-ratio: 16/9;
+  }
+
+  .video-player.audio-only {
+    min-height: 100px;
+    aspect-ratio: auto;
+  }
+
+  @media (max-width: 768px) {
+    .video-player {
+      max-height: 50vh;
+    }
+  }
+
+  /* Add loading state style */
+  .video-player:not([poster]) {
+    background: rgb(244 244 245); /* Light placeholder */
+  }
+
+  .video-info {
+    padding: 16px;
+  }
+
+  .video-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #000; /* Light mode: black */
+  }
+
+  .video-description {
+    font-size: 0.875rem;
+    color: #666; /* Light mode: grey */
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .video-container {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Dark mode */
+  :global(.dark) .video-card {
+    background: #000; /* Pure black in dark mode */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border in dark mode */
+  }
+
+  :global(.dark) .video-title {
+    color: #fff; /* Pure white in dark mode */
+  }
+
+  :global(.dark) .video-description {
+    color: rgba(255, 255, 255, 0.7); /* Slightly transparent white */
+  }
+
+  :global(.dark) .video-player:not([poster]) {
+    background: rgb(24 24 27); /* Dark placeholder */
+  }
+
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 800px;
+  }
+
+  .close-button {
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+
+  #modalVideo {
+    width: 100%;
+  }
+
+  .play-button:hover svg {
+    transform: scale(1.1);
+    transition: transform 0.2s;
+  }
+</style>

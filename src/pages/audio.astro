@@ -43,7 +43,7 @@ const tracks = [
 
 <Layout title={title}>
   <Container>
-    <main class="min-h-screen py-12 px-4">
+    <main class="py-8 px-4"> <!-- Adjust padding to match video.astro -->
       <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">Музичка библиотека</h1>
       <p class="text-zinc-600 dark:text-white/60 text-lg mb-8">могуће је пустити више песмама од једном</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -232,9 +232,9 @@ const tracks = [
       });
 
       // Set initial volume to 50%
-      audio.volume = 0.5;
-      volumeSlider.value = "0.5";
-      audio.dataset.lastVolume = "0.5";
+      audio.volume = 0.2;
+      volumeSlider.value = "0.2";
+      audio.dataset.lastVolume = "0.2";
     });
   });
   
