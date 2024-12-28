@@ -5,6 +5,41 @@
   class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm"
 >
   <div class="relative w-full max-w-7xl px-4">
+    <!-- Action Buttons - Moved above the image -->
+    <div id="action-buttons" class="mb-4 flex justify-end">
+      <div class="flex space-x-2">
+        <button
+          id="open-button"
+          class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          aria-label="Open in new tab"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </button>
+        
+        <button
+          id="download-button"
+          class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          aria-label="Download image"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+        </button>
+        
+        <button
+          id="close-button"
+          class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
+          aria-label="Close modal"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
     <div class="relative aspect-[3/2] w-full">
       <img 
         id="modal-image"
@@ -34,41 +69,14 @@
         </svg>
       </button>
     </div>
-
-    <!-- Action Buttons -->
-    <div class="absolute right-4 top-4 flex space-x-2">
-      <button
-        id="open-button"
-        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
-        aria-label="Open in new tab"
-      >
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-        </svg>
-      </button>
-      
-      <button
-        id="download-button"
-        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
-        aria-label="Download image"
-      >
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-        </svg>
-      </button>
-      
-      <button
-        id="close-button"
-        class="rounded-sm bg-white/10 p-2 text-white opacity-75 hover:opacity-100 transition-opacity"
-        aria-label="Close modal"
-      >
-        <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-        </svg>
-      </button>
-    </div>
   </div>
 </div>
+
+<style>
+  #image-modal:not(.flex) #action-buttons {
+    display: none;
+  }
+</style>
 
 <script>
   let currentIndex = 0;
@@ -81,6 +89,7 @@
   const closeButton = document.getElementById('close-button');
   const openButton = document.getElementById('open-button');
   const downloadButton = document.getElementById('download-button');
+  const actionButtons = document.getElementById('action-buttons');
 
   // Initialize image data from PhotoCards
   document.addEventListener('DOMContentLoaded', () => {
@@ -172,5 +181,5 @@
   });
 
   // Expose showModal function globally
-  window.showImageModal = showModal;
+  (window as any).showImageModal = showModal;
 </script>
