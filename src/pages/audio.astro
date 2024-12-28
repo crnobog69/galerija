@@ -1,12 +1,292 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import MusicPlayer from '../components/MusicPlayer.astro';
+import Container from '../components/ui/Container.astro';
 
 const title = "Аудио";
+
+export interface Track {
+  id: string;
+  title: string;
+  artist: string;
+  album: string;
+  cover: string;
+  audioSrc: string;
+}
+
+const tracks = [
+  {
+    id: "1",
+    title: "wutiwant",
+    artist: "saraunh0ly",
+    album: "wutiwant",
+    cover: "https://utfs.io/f/UDBxwoFcnD8kr2Yn7qyx2m74vSatG3KIThXlMUkgfCR5jbnE",
+    audioSrc: "https://utfs.io/f/UDBxwoFcnD8kjJwzDdFuNoP5kp6XeyA4ziRsVaFh7JBEYCdQ"
+  },
+  {
+    id: "2", 
+    title: "Mis",
+    artist: "Alex G",
+    album: "Rules", 
+    cover: "https://utfs.io/f/UDBxwoFcnD8k2uaTpVGfEZ2aoApnJgjdNsUPV3ISk7xG4v1t",
+    audioSrc: "https://utfs.io/f/UDBxwoFcnD8klKXg8t1hZo4Vg9ymHLkw2MjDpfPv6RaY37be"
+  },
+  {
+    id: "3", 
+    title: "Keep It Tucked",
+    artist: "ThxSoMuch",
+    album: "Keep It Tucked", 
+    cover: "https://utfs.io/f/UDBxwoFcnD8kh23FdSaDcB4I5aAmfP9zGYOqk71EjoRMNT6g",
+    audioSrc: "https://utfs.io/f/UDBxwoFcnD8kTdutVqjoKO2HIB4sf80i96naewEGNM3W5tlm"
+  }
+];
 ---
 
 <Layout title={title}>
-  <main class="py-8">
-    <h1 class="text-2xl font-medium mb-8 text-center">у процесу прављења</h1>
-  </main>
+  <Container>
+    <main class="min-h-screen py-12 px-4">
+      <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">Музичка библиотека</h1>
+      <p class="text-zinc-600 dark:text-white/60 text-lg mb-8">могуће је пустити више песмама од једном</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {tracks.map(track => (
+          <div class="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden">
+            <div class="aspect-square overflow-hidden">
+              <img 
+                src={track.cover} 
+                alt={`${track.album} cover`}
+                class="w-full h-full object-cover transition-all duration-300 hover:scale-105 hover:brightness-75"
+              />
+            </div>
+            
+            <div class="p-4 space-y-4">
+              <div>
+                <h3 class="font-medium text-lg text-zinc-900 dark:text-white">{track.title}</h3>
+                <p class="text-zinc-600 dark:text-white/60 text-sm">{track.artist}</p>
+                <p class="text-zinc-500 dark:text-white/40 text-xs">{track.album}</p>
+              </div>
+
+              <div class="audio-player space-y-3">
+                <div class="flex items-center justify-between">
+                  <button 
+                    class="play-button p-2 rounded-full hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors"
+                    data-track-id={track.id}
+                    data-audio-src={track.audioSrc}
+                  >
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-zinc-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+                    </svg>
+                  </button>
+
+                  <div class="volume-control flex items-center gap-2">
+                    <button class="mute-button p-1 hover:bg-white/5 rounded-full transition-colors">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-900 dark:text-white" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z"/>
+                      </svg>
+                    </button>
+                    <div class="relative w-20 flex items-center">
+                      <input 
+                        type="range" 
+                        class="volume-slider absolute w-full appearance-none bg-transparent cursor-pointer"
+                        min="0" 
+                        max="1" 
+                        step="0.01" 
+                        value="0.5"
+                      />
+                      <div class="volume-track w-full h-1 bg-zinc-200 dark:bg-white/10 rounded-full pointer-events-none"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="timeline flex items-center gap-2">
+                  <span class="time-current text-sm text-zinc-600 dark:text-white/60">0:00</span>
+                  <div class="progress-container w-full h-1 bg-zinc-200 dark:bg-white/10 rounded-full cursor-pointer">
+                    <div class="progress-bar h-full w-0 bg-zinc-900 dark:bg-white rounded-full"></div>
+                  </div>
+                  <span class="time-total text-sm text-zinc-600 dark:text-white/60">0:00</span>
+                </div>
+
+                <audio class="hidden"></audio>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </main>
+  </Container>
 </Layout>
+
+<style>
+  .play-button {
+    @apply text-white/80 hover:text-white transition-colors p-2 rounded-full hover:bg-white/10;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    @apply appearance-none w-2.5 h-2.5 bg-zinc-900 dark:bg-white rounded-full cursor-pointer;
+    @apply transition-transform duration-200;
+    @apply hover:scale-125;
+    margin-top: -4px;
+  }
+  
+  .volume-slider::-moz-range-thumb {
+    @apply w-2.5 h-2.5 bg-zinc-900 dark:bg-white rounded-full cursor-pointer border-0;
+    @apply transition-transform duration-200;
+    @apply hover:scale-125;
+  }
+
+  .play-button svg {
+    @apply text-zinc-900 dark:text-white transition-colors;
+  }
+
+  .volume-slider {
+    @apply h-1 z-10 transition-all duration-200;
+  }
+
+  .volume-slider:hover {
+    @apply h-2;
+  }
+
+  .volume-slider::-webkit-slider-thumb {
+    @apply appearance-none;
+    @apply w-3 h-3;
+    @apply bg-zinc-900 dark:bg-white;
+    @apply rounded-full;
+    @apply cursor-pointer;
+    @apply transition-transform duration-200;
+    @apply hover:scale-150;
+    margin-top: -3px;
+  }
+
+  .volume-slider::-moz-range-thumb {
+    @apply w-3 h-3;
+    @apply bg-zinc-900 dark:bg-white;
+    @apply rounded-full;
+    @apply border-0;
+    @apply cursor-pointer;
+    @apply transition-transform duration-200;
+    @apply hover:scale-150;
+  }
+
+  .volume-slider::-webkit-slider-runnable-track {
+    @apply appearance-none;
+    @apply h-1;
+    @apply bg-transparent;
+  }
+
+  .volume-slider::-moz-range-track {
+    @apply appearance-none;
+    @apply h-1;
+    @apply bg-transparent;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const players = document.querySelectorAll('.audio-player');
+    
+    players.forEach(player => {
+      const audio = player.querySelector('audio') as HTMLAudioElement;
+      const playBtn = player.querySelector('.play-button') as HTMLButtonElement;
+      const progressContainer = player.querySelector('.progress-container') as HTMLDivElement;
+      const progressBar = player.querySelector('.progress-bar') as HTMLDivElement;
+      const volumeSlider = player.querySelector('.volume-slider') as HTMLInputElement;
+      const timeCurrent = player.querySelector('.time-current') as HTMLSpanElement;
+      const timeTotal = player.querySelector('.time-total') as HTMLSpanElement;
+  
+      // Set audio source
+      if (playBtn.dataset.audioSrc) {
+        audio.src = playBtn.dataset.audioSrc;
+      }
+  
+      // Play/Pause
+      playBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          updatePauseIcon(playBtn);
+        } else {
+          audio.pause();
+          updatePlayIcon(playBtn);
+        }
+      });
+  
+      // Timeline click
+      progressContainer.addEventListener('mousedown', (e: MouseEvent) => {
+        const rect = progressContainer.getBoundingClientRect();
+        const pos = (e.clientX - rect.left) / rect.width;
+        audio.currentTime = pos * audio.duration;
+      });
+  
+      // Volume control
+      volumeSlider.addEventListener('input', () => {
+        audio.volume = parseFloat(volumeSlider.value);
+      });
+  
+      // Time update
+      audio.addEventListener('timeupdate', () => {
+        const percent = (audio.currentTime / audio.duration) * 100;
+        progressBar.style.width = `${percent}%`;
+        timeCurrent.textContent = formatTime(audio.currentTime);
+      });
+  
+      // Load metadata
+      audio.addEventListener('loadedmetadata', () => {
+        timeTotal.textContent = formatTime(audio.duration);
+      });
+
+      // Set initial volume to 50%
+      audio.volume = 0.5;
+      volumeSlider.value = "0.5";
+      audio.dataset.lastVolume = "0.5";
+    });
+  });
+  
+  function formatTime(seconds: number): string {
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  }
+  
+  function updatePlayIcon(button: HTMLButtonElement) {
+    button.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-zinc-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
+      </svg>
+    `;
+  }
+  
+  function updatePauseIcon(button: HTMLButtonElement) {
+    button.innerHTML = `
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-zinc-900 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
+      </svg>
+    `;
+  }
+
+  // Add to existing script
+  document.querySelectorAll('.mute-button').forEach(button => {
+    button.addEventListener('click', () => {
+      const audio = button.closest('.audio-player')?.querySelector('audio') as HTMLAudioElement;
+      const volumeSlider = button.closest('.volume-control')?.querySelector('.volume-slider') as HTMLInputElement;
+      
+      if (audio) {
+        if (audio.volume > 0) {
+          audio.dataset.lastVolume = audio.volume.toString();
+          audio.volume = 0;
+          volumeSlider.value = "0";
+          button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-600 dark:text-white/60" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217zM12.293 7.293a1 1 0 011.414 0L15 8.586l1.293-1.293a1 1 0 111.414 1.414L16.414 10l1.293 1.293a1 1 0 01-1.414 1.414L15 11.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 10l-1.293-1.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
+            </svg>
+          `;
+        } else {
+          const lastVolume = parseFloat(audio.dataset.lastVolume || "1");
+          audio.volume = lastVolume;
+          volumeSlider.value = lastVolume.toString();
+          button.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-600 dark:text-white/60" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.707-3.707a1 1 0 011.09-.217z"/>
+            </svg>
+          `;
+        }
+      }
+    });
+  });
+</script>
