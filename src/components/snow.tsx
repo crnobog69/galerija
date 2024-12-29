@@ -24,14 +24,13 @@ const Snow: React.FC = () => {
   const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
 
   useEffect(() => {
-    // Create initial snowflakes
     const initialSnowflakes: Snowflake[] = Array.from(
-      { length: 35 }, // More flakes since they're smaller
+      { length: 35 },
       (_, i) => ({
         id: i,
         left: Math.random() * 100,
-        size: Math.random() * 4 + 2, // Smaller flakes: 2-6px
-        opacity: Math.random() * 0.4 + 0.3, // Opacity: 0.3-0.7
+        size: Math.random() * 4 + 2,
+        opacity: Math.random() * 0.4 + 0.3,
         animationDuration: Math.random() * 15 + 10,
         drift: Math.random() * 100 - 50,
       })

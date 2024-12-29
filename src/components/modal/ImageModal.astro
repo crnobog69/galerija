@@ -2,7 +2,7 @@
 ---
 <div id="image-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/90 backdrop-blur-sm p-4">
   <div class="relative w-full max-w-7xl h-full flex flex-col">
-    <!-- Action Buttons -->
+    
     <div id="action-buttons" class="flex justify-end mb-2">
       <div class="flex space-x-2">
         <button
@@ -52,12 +52,12 @@
         </button>
       </div>
     </div>
-    <!-- Image and Navigation Container -->
+    
     <div class="relative flex-1 overflow-hidden flex flex-col image-container">
       <div id="image-wrapper" class="w-full h-full overflow-auto">
         <img id="modal-image" src="" alt="" class="max-w-none max-h-none object-contain m-auto transition-transform duration-200 ease-in-out" />
       </div>
-      <!-- Navigation Buttons -->
+      
       <div class="absolute inset-x-0 bottom-0 flex justify-between p-2 navigation-buttons">
         <button id="prev-button" class="rounded-full p-2 text-white opacity-75 hover:opacity-100 transition-opacity">
           <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: calc(100vh - 4rem); /* Subtract the padding from the modal */
+    height: calc(100vh - 4rem); 
   }
   
   #image-wrapper {
@@ -123,7 +123,7 @@
   const zoomInButton = document.getElementById('zoom-in-button');
   const zoomOutButton = document.getElementById('zoom-out-button');
 
-  // Initialize image data from PhotoCards
+ 
   document.addEventListener('DOMContentLoaded', () => {
     const photoCards = document.querySelectorAll('[data-photo]');
     images = Array.from(photoCards).map(card => ({
@@ -180,7 +180,7 @@
     }
   }
 
-  // Event Listeners
+ 
   prevButton?.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + images.length) % images.length;
     updateImage();
@@ -217,14 +217,14 @@
   zoomInButton?.addEventListener('click', zoomIn);
   zoomOutButton?.addEventListener('click', zoomOut);
 
-  // Close modal when clicking outside
+ 
   modal?.addEventListener('click', (e) => {
     if (e.target === modal) {
       hideModal();
     }
   });
 
-  // Keyboard navigation and zoom
+  
   document.addEventListener('keydown', (e) => {
     if (!modal?.classList.contains('hidden')) {
       switch (e.key) {
@@ -247,7 +247,7 @@
     }
   });
 
-  // Mouse wheel zoom
+ 
   imageWrapper?.addEventListener('wheel', (e) => {
     e.preventDefault();
     if (e.deltaY < 0) {
@@ -257,7 +257,7 @@
     }
   });
 
-  // Touch zoom
+  
   let initialDistance = 0;
   imageWrapper?.addEventListener('touchstart', (e) => {
     if (e.touches.length === 2) {
@@ -285,7 +285,7 @@
     }
   });
 
-  // Expose showModal function globally
+  
   (window as any).showImageModal = showModal;
 </script>
 

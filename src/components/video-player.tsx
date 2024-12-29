@@ -54,7 +54,7 @@ export function VideoPlayer({
   onOpenPopup,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5); // Changed from 1 to 0.5
+  const [volume, setVolume] = useState(0.5);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -69,12 +69,10 @@ export function VideoPlayer({
     if (videoElement) {
       const updateTime = () => setCurrentTime(videoElement.currentTime);
 
-      // Update duration when metadata is loaded
       const handleLoadedMetadata = () => {
         setDuration(videoElement.duration);
       };
 
-      // Update duration when the duration changes
       const handleDurationChange = () => {
         setDuration(videoElement.duration);
       };
@@ -83,7 +81,6 @@ export function VideoPlayer({
       videoElement.addEventListener("loadedmetadata", handleLoadedMetadata);
       videoElement.addEventListener("durationchange", handleDurationChange);
 
-      // Set initial duration if already available
       if (videoElement.duration) {
         setDuration(videoElement.duration);
       }
@@ -102,7 +99,6 @@ export function VideoPlayer({
     }
   }, []);
 
-  // Add useEffect to set initial volume
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.volume = 0.5;

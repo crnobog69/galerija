@@ -48,6 +48,5 @@ const initialSnowEnabled = typeof localStorage !== 'undefined' ? localStorage.ge
     updateSnowState(!isCurrentlyEnabled);
   });
 
-  // Initialize state on load
   updateSnowState(localStorage.getItem('snow-enabled') !== 'false');
 </script>

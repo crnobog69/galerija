@@ -9,7 +9,7 @@ const title = "Аудио";
 
 <Layout title={title}>
   <Container>
-    <main class="py-8 px-4"> <!-- Adjust padding to match video.astro -->
+    <main class="py-8 px-4"> 
       <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">Музичка библиотека</h1>
       <p class="text-zinc-600 dark:text-white/60 text-lg mb-8">могуће је пустити више песмама од једном</p>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -172,12 +172,12 @@ const title = "Аудио";
       const timeCurrent = player.querySelector('.time-current') as HTMLSpanElement;
       const timeTotal = player.querySelector('.time-total') as HTMLSpanElement;
   
-      // Set audio source
+      
       if (playBtn.dataset.audioSrc) {
         audio.src = playBtn.dataset.audioSrc;
       }
   
-      // Play/Pause
+     
       playBtn.addEventListener('click', () => {
         if (audio.paused) {
           audio.play();
@@ -188,31 +188,31 @@ const title = "Аудио";
         }
       });
   
-      // Timeline click
+     
       progressContainer.addEventListener('mousedown', (e: MouseEvent) => {
         const rect = progressContainer.getBoundingClientRect();
         const pos = (e.clientX - rect.left) / rect.width;
         audio.currentTime = pos * audio.duration;
       });
   
-      // Volume control
+      
       volumeSlider.addEventListener('input', () => {
         audio.volume = parseFloat(volumeSlider.value);
       });
   
-      // Time update
+      
       audio.addEventListener('timeupdate', () => {
         const percent = (audio.currentTime / audio.duration) * 100;
         progressBar.style.width = `${percent}%`;
         timeCurrent.textContent = formatTime(audio.currentTime);
       });
   
-      // Load metadata
+      
       audio.addEventListener('loadedmetadata', () => {
         timeTotal.textContent = formatTime(audio.duration);
       });
 
-      // Set initial volume to 50%
+      
       audio.volume = 0.2;
       volumeSlider.value = "0.2";
       audio.dataset.lastVolume = "0.2";
@@ -241,7 +241,7 @@ const title = "Аудио";
     `;
   }
 
-  // Add to existing script
+
   document.querySelectorAll('.mute-button').forEach(button => {
     button.addEventListener('click', () => {
       const audio = button.closest('.audio-player')?.querySelector('audio') as HTMLAudioElement;
