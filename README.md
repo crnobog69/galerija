@@ -15,62 +15,61 @@
 
 ```text
 
-┌── .codesandbox/
+┌── .codesandbox
 │   └── Dockerfile
 │
-├── .github/
+├── .github
 │   └── dependabot.yml
 │
-├── .husky/
+├── .husky
 │   └── pre-commit
 │
-├── .vscode/
+├── .vscode
 │   ├── extensions.json
 │   └── launch.json
 │
-├── public/
+├── public
 │   └── favicon.svg
 │
-├── src/
-│   ├── components/
-│   │   ├── gallery/
+├── src
+│   ├── components
+│   │   ├── gallery
 │   │   │   ├── PhotoCard.astro
 │   │   │   └── PhotoGrid.astro
 │   │   │
-│   │   ├── layout/
+│   │   ├── layout
 │   │   │   ├── Footer.astro
 │   │   │   ├── Header.astro
 │   │   │   ├── Logo.astro
 │   │   │
-│   │   ├── modal/
+│   │   ├── modal
 │   │   │   └── ImageModal.astro
 │   │   │
-│   │   ├── theme/
+│   │   ├── theme
 │   │   │   └── ThemeToggle.astro
 │   │   │
-│   │   ├── ui/
+│   │   ├── ui
 │   │   │   ├── Container.astro
 │   │   │   ├── Card.astro
 │   │   │   ├── MusicPlayer.astro
-│   │   │   ├── PhotoCard.astro
-│   │   │   └── ThemeToggle.astro
+│   │   │   └── PhotoCard.astro
 │   │   │
-│   │   └── video/
+│   │   └── video
 │   │       ├── video-card.tsx
 │   │       └── video-player.tsx
 │   │
-│   ├── data/
+│   ├── data
 │   │   └── videos.ts
 │   │
-│   ├── layouts/
+│   ├── layouts
 │   │   └── Layout.astro
 │   │
-│   ├── pages/
+│   ├── pages
 │   │   ├── audio.astro
 │   │   ├── index.astro
 │   │   └── video.astro
 │   │
-│   ├── styles/
+│   ├── styles
 │   │   └── global.css
 │   │
 │   ├── env.d.ts
