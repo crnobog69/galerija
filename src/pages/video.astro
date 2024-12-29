@@ -13,7 +13,6 @@ const title = "Видео";
       <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">
         Видео библиотека
       </h1>
-      <p class="text-zinc-600 dark:text-white/60 text-lg mb-8">могуће је пустити више видеа од једном</p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         {videos.map((video) => (
           <VideoCard video={video} client:load />

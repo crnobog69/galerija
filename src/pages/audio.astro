@@ -3,18 +3,22 @@ import Layout from '../layouts/Layout.astro';
 import { tracks } from "../data/tracks";
 import Container from '../components/ui/Container.astro';
 
-const title = "Аудио";
+const title = "Музика";
 
 ---
 
 <Layout title={title}>
   <Container>
-    <main class="py-8 px-4"> 
-      <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">Музичка библиотека</h1>
-      <p class="text-zinc-600 dark:text-white/60 text-lg mb-8">могуће је пустити више песмама од једном</p>
+    <main class="py-8"> 
+      <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">
+        Музичка библиотека
+      </h1>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {tracks.map(track => (
-          <div class="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden">
+          <div 
+            data-animate 
+            class="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden"
+          >
             <div class="aspect-square overflow-hidden">
               <img 
                 src={track.cover} 
@@ -156,6 +160,26 @@ const title = "Аудио";
     @apply h-1;
     @apply bg-zinc-300 dark:bg-zinc-600;
     @apply rounded-full;
+  }
+
+  [data-animate] {
+    view-timeline-name: --card;
+    view-timeline-axis: block;
+    animation-timeline: --card;
+    animation-name: show;
+    animation-range: entry 10% cover 30%;
+    animation-fill-mode: both;
+  }
+
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 
