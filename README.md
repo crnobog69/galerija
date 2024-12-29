@@ -1,14 +1,32 @@
-# Галерија
+# <p align="center">Галерија</p>
 
-## 🚀 Project Structure
+<br>
+
+<div align="center">
+<p>
+<a href="https://github.com/crnobog69/galerija/stargazers"><img src="https://img.shields.io/github/stars/crnobog69/galerija?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=C9CBFF&labelColor=302D41" alt="stars"><a>&nbsp;&nbsp;
+<a href="https://github.com/crnobog69/galerija/"><img src="https://img.shields.io/github/repo-size/crnobog69/galerija?style=for-the-badge&logo=linux&logoColor=f9e2af&label=Size&labelColor=302D41&color=f9e2af" alt="REPO SIZE"></a>&nbsp;&nbsp;
+<a href="https://github.com/crnobog69/galerija/commits/main/"><img src="https://img.shields.io/github/last-commit/crnobog69/galerija?style=for-the-badge&logo=github&logoColor=eba0ac&label=Last%20Commit&labelColor=302D41&color=eba0ac" alt="Last Commit"></a>&nbsp;&nbsp;
+<a href="https://github.com/crnobog69/galerija/LICENSE"><img src="https://img.shields.io/github/license/crnobog69/galerija?style=for-the-badge&logo=&color=CBA6F7&logoColor=CBA6F7&labelColor=302D41" alt="LICENSE"></a>&nbsp;&nbsp;
+</p>
+</div>
+
+<br>
 
 ```text
 /
+├── .codesandbox/
+├── .github/
+│   └── dependabot.yml
+├── .husky/
+│   └── pre-commit
+├── .vscode/
+│   ├── extensions.json
+│   └── launch.json
 ├── public/
 │   └── favicon.svg
 ├── src/
 │   ├── components/
-│   │   ├── Card.astro
 │   │   ├── gallery/
 │   │   │   ├── PhotoCard.astro
 │   │   │   └── PhotoGrid.astro
@@ -18,18 +36,56 @@
 │   │   │   ├── Logo.astro
 │   │   ├── modal/
 │   │   │   └── ImageModal.astro
-│   │   └── theme/
-│   │       └── ThemeToggle.astro
+│   │   ├── theme/
+│   │   │   └── ThemeToggle.astro
+│   │   ├── ui/
+│   │   │   ├── Container.astro
+│   │   │   ├── Card.astro
+│   │   │   ├── MusicPlayer.astro
+│   │   │   ├── PhotoCard.astro
+│   │   │   └── ThemeToggle.astro
+│   │   ├── video/
+│   │   │   ├── video-card.tsx
+│   │   │   └── video-player.tsx
+│   ├── data/
+│   │   └── videos.ts
 │   ├── layouts/
-│   └── pages/
-└── package.json
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── audio.astro
+│   │   ├── index.astro
+│   │   └── video.astro
+│   ├── styles/
+│   │   └── global.css
+│   ├── env.d.ts
+│   └── types.ts
+├── .directory
+├── .gitignore
+├── .prettierrc
+├── LICENSE
+├── README.md
+├── astro.config.mjs
+├── bun.lockb
+├── package.json
+├── push.ps1
+├── push.sh
+├── tailwind.config.mjs
+├── tsconfig.json
+└── vercel.json
 ```
 
-## 🧞 Commands
+```bash
+bun install
+```
 
-| Command           | Action                     |
-| :---------------- | :------------------------- |
-| `bun install`     | Installs dependencies      |
-| `bun run dev`     | Starts local dev server    |
-| `bun run build`   | Build your production site |
-| `bun run preview` | Preview your build locally |
+```bash
+bun run dev
+```
+
+```bash
+bun run build
+```
+
+```bash
+bun run preview
+```
