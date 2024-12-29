@@ -55,3 +55,35 @@
 .disable-snow .SnowContainer {
   display: none !important;
 }
+
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-animate] {
+  view-timeline-name: --card;
+  view-timeline-axis: block;
+  animation-timeline: --card;
+  animation-name: show;
+  animation-range: entry 25% cover 35%;
+  animation-fill-mode: both;
+}
+
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 50;
+}
+
+.popup-content {
+  position: relative;
+  z-index: 51;
+}

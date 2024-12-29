@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { Video } from "../data/videos";
-import { VideoPlayer } from "./video-player";
+import { VideoPlayer } from "./video-player.tsx";
 
 export function VideoCard({ video }: { video: Video }) {
   const [showPopup, setShowPopup] = useState(false);
@@ -16,22 +16,29 @@ export function VideoCard({ video }: { video: Video }) {
   };
 
   return (
-    <div className="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden">
-      <div className="w-full aspect-video">
-        <VideoPlayer video={video} onOpenPopup={togglePopup} />
-      </div>
-      <div className="p-4">
-        <h3 className="font-medium text-lg text-zinc-900 dark:text-white">
-          {video.title}
-        </h3>
-        <p className="text-zinc-600 dark:text-white/60">{video.description}</p>
+    <>
+      <div
+        data-animate
+        className="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden"
+      >
+        <div className="w-full aspect-video">
+          <VideoPlayer video={video} onOpenPopup={togglePopup} />
+        </div>
+        <div className="p-4">
+          <h3 className="font-medium text-lg text-zinc-900 dark:text-white">
+            {video.title}
+          </h3>
+          <p className="text-zinc-600 dark:text-white/60">
+            {video.description}
+          </p>
+        </div>
       </div>
       {showPopup && (
         <div
-          className="fixed inset-0 bg-zinc-900/80 dark:bg-black/90 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/80 flex items-center justify-center z-50"
           onClick={handleOverlayClick}
         >
-          <div className="bg-zinc-100 dark:bg-black p-4 rounded-lg shadow-xl max-w-4xl w-full border border-zinc-200 dark:border-white/10">
+          <div className="popup-content bg-zinc-100 dark:bg-black p-4 rounded-lg shadow-xl w-full max-w-4xl mx-4 border border-zinc-200 dark:border-white/10">
             <VideoPlayer video={video} isPopup={true} />
             <div className="mt-4 flex justify-between items-center">
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
@@ -47,6 +54,6 @@ export function VideoCard({ video }: { video: Video }) {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
