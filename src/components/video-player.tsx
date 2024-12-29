@@ -14,6 +14,34 @@ import {
   ExternalLink,
 } from "lucide-react";
 
+const sliderStyles = `
+  appearance-none 
+  h-1.5
+  bg-white/30 
+  rounded-full 
+  outline-none 
+  transition-all
+  hover:h-2
+  [&::-webkit-slider-thumb]:appearance-none
+  [&::-webkit-slider-thumb]:w-3
+  [&::-webkit-slider-thumb]:h-3
+  [&::-webkit-slider-thumb]:rounded-full
+  [&::-webkit-slider-thumb]:bg-white
+  [&::-webkit-slider-thumb]:hover:scale-125
+  [&::-webkit-slider-thumb]:transition-all
+  [&::-moz-range-thumb]:appearance-none
+  [&::-moz-range-thumb]:w-3
+  [&::-moz-range-thumb]:h-3
+  [&::-moz-range-thumb]:rounded-full
+  [&::-moz-range-thumb]:bg-white
+  [&::-moz-range-thumb]:hover:scale-125
+  [&::-moz-range-thumb]:border-0
+  [&::-moz-range-thumb]:transition-all
+  [&::-moz-range-progress]:bg-white
+  [&::-moz-range-track]:bg-white/30
+  [&::-moz-range-track]:rounded-full
+`;
+
 interface VideoPlayerProps {
   video: Video;
   isPopup?: boolean;
@@ -26,7 +54,7 @@ export function VideoPlayer({
   onOpenPopup,
 }: VideoPlayerProps) {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(1);
+  const [volume, setVolume] = useState(0.5); // Changed from 1 to 0.5
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -71,6 +99,13 @@ export function VideoPlayer({
           handleDurationChange
         );
       };
+    }
+  }, []);
+
+  // Add useEffect to set initial volume
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.volume = 0.5;
     }
   }, []);
 
@@ -241,74 +276,81 @@ export function VideoPlayer({
         }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col space-y-2 p-4">
+        <div className="flex flex-col space-y-1 p-1 sm:p-3">
           <input
             type="range"
             min="0"
             max={duration || 0}
             value={currentTime}
             onChange={handleTimelineChange}
-            className="w-full accent-white"
+            className={`w-full ${sliderStyles}`}
           />
-          <div className="flex items-center justify-between text-white">
-            <div className="flex items-center space-x-2">
-              <button onClick={togglePlay} className="focus:outline-none">
+          <div className="flex flex-row items-center justify-between text-white">
+            <div className="flex items-center space-x-1.5">
+              <button onClick={togglePlay} className="p-1.5 focus:outline-none">
                 {isPlaying ? (
-                  <Pause className="w-6 h-6" />
+                  <Pause className="w-5 h-5" />
                 ) : (
-                  <Play className="w-6 h-6" />
+                  <Play className="w-5 h-5" />
                 )}
               </button>
-              <button
-                onClick={() => skipTime(-5)}
-                className="focus:outline-none"
-              >
-                <Rewind className="w-6 h-6" />
-              </button>
-              <button
-                onClick={() => skipTime(5)}
-                className="focus:outline-none"
-              >
-                <FastForward className="w-6 h-6" />
-              </button>
-              <div className="text-sm">
+              <div className="flex items-center space-x-1.5">
+                <button
+                  onClick={() => skipTime(-5)}
+                  className="p-1.5 focus:outline-none"
+                >
+                  <Rewind className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => skipTime(5)}
+                  className="p-1.5 focus:outline-none"
+                >
+                  <FastForward className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="text-xs">
                 {formatTime(currentTime)} / {formatTime(duration || 0)}
               </div>
             </div>
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1.5">
+              <div className="flex items-center space-x-1.5">
+                <button
+                  onClick={() => setVolume(volume === 0 ? 1 : 0)}
+                  className="p-1.5 focus:outline-none"
+                >
+                  {volume === 0 ? (
+                    <VolumeX className="w-6 h-6 sm:w-5 sm:h-5" />
+                  ) : (
+                    <Volume2 className="w-6 h-6 sm:w-5 sm:h-5" />
+                  )}
+                </button>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.1"
+                  value={volume}
+                  onChange={handleVolumeChange}
+                  className={`w-14 sm:w-16 ${sliderStyles}`}
+                />
+              </div>
               <button
-                onClick={() => setVolume(volume === 0 ? 1 : 0)}
-                className="focus:outline-none"
+                onClick={toggleFullscreen}
+                className="p-1.5 focus:outline-none"
               >
-                {volume === 0 ? (
-                  <VolumeX className="w-6 h-6" />
-                ) : (
-                  <Volume2 className="w-6 h-6" />
-                )}
-              </button>
-              <input
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value={volume}
-                onChange={handleVolumeChange}
-                className="w-20 accent-white"
-              />
-              <button onClick={toggleFullscreen} className="focus:outline-none">
                 {isFullscreen ? (
-                  <Minimize2 className="w-6 h-6" />
+                  <Minimize2 className="w-6 h-6 sm:w-5 sm:h-5" />
                 ) : (
-                  <Maximize2 className="w-6 h-6" />
+                  <Maximize2 className="w-6 h-6 sm:w-5 sm:h-5" />
                 )}
               </button>
               {!isPopup && (
                 <button
                   onClick={onOpenPopup}
-                  className="focus:outline-none"
+                  className="p-1.5 focus:outline-none"
                   aria-label="Open in popup"
                 >
-                  <ExternalLink className="w-6 h-6" />
+                  <ExternalLink className="w-6 h-6 sm:w-5 sm:h-5" />
                 </button>
               )}
             </div>

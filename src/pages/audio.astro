@@ -1,44 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { tracks } from "../data/tracks";
 import Container from '../components/ui/Container.astro';
 
 const title = "Аудио";
 
-export interface Track {
-  id: string;
-  title: string;
-  artist: string;
-  album: string;
-  cover: string;
-  audioSrc: string;
-}
-
-const tracks = [
-  {
-    id: "1",
-    title: "wutiwant",
-    artist: "saraunh0ly",
-    album: "wutiwant",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kr2Yn7qyx2m74vSatG3KIThXlMUkgfCR5jbnE",
-    audioSrc: "https://utfs.io/f/UDBxwoFcnD8kjJwzDdFuNoP5kp6XeyA4ziRsVaFh7JBEYCdQ"
-  },
-  {
-    id: "2", 
-    title: "Mis",
-    artist: "Alex G",
-    album: "Rules", 
-    cover: "https://utfs.io/f/UDBxwoFcnD8k2uaTpVGfEZ2aoApnJgjdNsUPV3ISk7xG4v1t",
-    audioSrc: "https://utfs.io/f/UDBxwoFcnD8klKXg8t1hZo4Vg9ymHLkw2MjDpfPv6RaY37be"
-  },
-  {
-    id: "3", 
-    title: "Keep It Tucked",
-    artist: "ThxSoMuch",
-    album: "Keep It Tucked", 
-    cover: "https://utfs.io/f/UDBxwoFcnD8kh23FdSaDcB4I5aAmfP9zGYOqk71EjoRMNT6g",
-    audioSrc: "https://utfs.io/f/UDBxwoFcnD8kTdutVqjoKO2HIB4sf80i96naewEGNM3W5tlm"
-  }
-];
 ---
 
 <Layout title={title}>
@@ -58,10 +24,23 @@ const tracks = [
             </div>
             
             <div class="p-4 space-y-4">
-              <div>
-                <h3 class="font-medium text-lg text-zinc-900 dark:text-white">{track.title}</h3>
-                <p class="text-zinc-600 dark:text-white/60 text-sm">{track.artist}</p>
-                <p class="text-zinc-500 dark:text-white/40 text-xs">{track.album}</p>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="font-medium text-lg text-zinc-900 dark:text-white">{track.title}</h3>
+                  <p class="text-zinc-600 dark:text-white/60 text-sm">{track.artist}</p>
+                  <p class="text-zinc-500 dark:text-white/40 text-xs">{track.album}</p>
+                </div>
+                <a 
+                  href={track.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="source-button p-1.5 rounded-full hover:bg-zinc-200 dark:hover:bg-white/10 transition-colors flex-shrink-0"
+                  title="Go to source"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-900 dark:text-white" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                  </svg>
+                </a>
               </div>
 
               <div class="audio-player space-y-3">
@@ -75,7 +54,7 @@ const tracks = [
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
                     </svg>
                   </button>
-
+                  
                   <div class="volume-control flex items-center gap-2">
                     <button class="mute-button p-1 hover:bg-white/5 rounded-full transition-colors">
                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-zinc-900 dark:text-white" viewBox="0 0 20 20" fill="currentColor">
@@ -91,15 +70,15 @@ const tracks = [
                         step="0.01" 
                         value="0.5"
                       />
-                      <div class="volume-track w-full h-1 bg-zinc-200 dark:bg-white/10 rounded-full pointer-events-none"></div>
+                      <div class="volume-track w-full h-1 bg-zinc-300 dark:bg-zinc-600 rounded-full pointer-events-none"></div>
                     </div>
                   </div>
                 </div>
 
                 <div class="timeline flex items-center gap-2">
                   <span class="time-current text-sm text-zinc-600 dark:text-white/60">0:00</span>
-                  <div class="progress-container w-full h-1 bg-zinc-200 dark:bg-white/10 rounded-full cursor-pointer">
-                    <div class="progress-bar h-full w-0 bg-zinc-900 dark:bg-white rounded-full"></div>
+                  <div class="progress-container w-full h-1 bg-zinc-300 dark:bg-zinc-600 rounded-full cursor-pointer">
+                    <div class="progress-bar h-full w-0 bg-zinc-800 dark:bg-white rounded-full"></div>
                   </div>
                   <span class="time-total text-sm text-zinc-600 dark:text-white/60">0:00</span>
                 </div>
@@ -168,13 +147,15 @@ const tracks = [
   .volume-slider::-webkit-slider-runnable-track {
     @apply appearance-none;
     @apply h-1;
-    @apply bg-transparent;
+    @apply bg-zinc-300 dark:bg-zinc-600;
+    @apply rounded-full;
   }
 
   .volume-slider::-moz-range-track {
     @apply appearance-none;
     @apply h-1;
-    @apply bg-transparent;
+    @apply bg-zinc-300 dark:bg-zinc-600;
+    @apply rounded-full;
   }
 </style>
 
