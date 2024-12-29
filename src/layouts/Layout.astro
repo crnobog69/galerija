@@ -10,7 +10,7 @@ interface Props {
 }
 
 const { title } = Astro.props;
-const showSnow = new Date().getMonth() >= 11 || new Date().getMonth() <= 1; // Show in winter months
+const showSnow = new Date().getMonth() === 11 || new Date().getMonth() === 0; // December (11) and January (0)
 ---
 
 <!doctype html>
@@ -23,6 +23,13 @@ const showSnow = new Date().getMonth() >= 11 || new Date().getMonth() <= 1; // S
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script>
+      // Initialize snow preference
+      const snowEnabled = localStorage.getItem('snow-enabled') !== 'false';
+      if (!snowEnabled) {
+        document.documentElement.classList.add('disable-snow');
+      }
+
+      // Theme initialization
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -37,10 +44,15 @@ const showSnow = new Date().getMonth() >= 11 || new Date().getMonth() <= 1; // S
         document.documentElement.classList.add('dark');
       }
     </script>
+    <style is:global>
+      .disable-snow .SnowContainer {
+        display: none !important;
+      }
+    </style>
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased dark:bg-black dark:text-white pt-14">
-    {showSnow && <Snow client:load />}
     <Header />
+    <Snow client:load />
     <slot />
     <Footer />
   </body>

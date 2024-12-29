@@ -59,7 +59,7 @@ const Snow: React.FC = () => {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden">
+    <div className="SnowContainer fixed inset-0 pointer-events-none overflow-hidden">
       {snowflakes.map((flake) => (
         <div
           key={flake.id}

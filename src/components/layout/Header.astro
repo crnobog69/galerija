@@ -1,5 +1,7 @@
 ---
+import Settings from './Settings.astro';
 import ThemeToggle from '../theme/ThemeToggle.astro';
+import SnowToggle from '../theme/SnowToggle.astro';
 import Logo from './Logo.astro';
 import Container from '../ui/Container.astro';
 ---
@@ -11,7 +13,7 @@ import Container from '../ui/Container.astro';
       <nav class="flex items-center space-x-4">
         <a href="/audio" class="text-gray-900 dark:text-white hover:underline">Аудио</a>
         <a href="/video" class="text-gray-900 dark:text-white hover:underline">Видео</a>
-        <ThemeToggle />
+        <Settings />
       </nav>
     </div>
   </Container>
