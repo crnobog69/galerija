@@ -74,6 +74,8 @@
 └── vercel.json
 ```
 
+---
+
 ```bash
 bun install
 ```
