@@ -14,51 +14,68 @@
 <br>
 
 ```text
-/
-├── .codesandbox/
+
+┌── .codesandbox/
+│   └── Dockerfile
+│
 ├── .github/
 │   └── dependabot.yml
+│
 ├── .husky/
 │   └── pre-commit
+│
 ├── .vscode/
 │   ├── extensions.json
 │   └── launch.json
+│
 ├── public/
 │   └── favicon.svg
+│
 ├── src/
 │   ├── components/
 │   │   ├── gallery/
 │   │   │   ├── PhotoCard.astro
 │   │   │   └── PhotoGrid.astro
+│   │   │
 │   │   ├── layout/
 │   │   │   ├── Footer.astro
 │   │   │   ├── Header.astro
 │   │   │   ├── Logo.astro
+│   │   │
 │   │   ├── modal/
 │   │   │   └── ImageModal.astro
+│   │   │
 │   │   ├── theme/
 │   │   │   └── ThemeToggle.astro
+│   │   │
 │   │   ├── ui/
 │   │   │   ├── Container.astro
 │   │   │   ├── Card.astro
 │   │   │   ├── MusicPlayer.astro
 │   │   │   ├── PhotoCard.astro
 │   │   │   └── ThemeToggle.astro
-│   │   ├── video/
-│   │   │   ├── video-card.tsx
-│   │   │   └── video-player.tsx
+│   │   │
+│   │   └── video/
+│   │       ├── video-card.tsx
+│   │       └── video-player.tsx
+│   │
 │   ├── data/
 │   │   └── videos.ts
+│   │
 │   ├── layouts/
 │   │   └── Layout.astro
+│   │
 │   ├── pages/
 │   │   ├── audio.astro
 │   │   ├── index.astro
 │   │   └── video.astro
+│   │
 │   ├── styles/
 │   │   └── global.css
+│   │
 │   ├── env.d.ts
 │   └── types.ts
+│
 ├── .directory
 ├── .gitignore
 ├── .prettierrc
