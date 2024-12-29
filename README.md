@@ -40,7 +40,7 @@
 │   │   ├── layout
 │   │   │   ├── Footer.astro
 │   │   │   ├── Header.astro
-│   │   │   ├── Logo.astro
+│   │   │   └── Logo.astro
 │   │   │
 │   │   ├── modal
 │   │   │   └── ImageModal.astro
@@ -59,6 +59,7 @@
 │   │       └── video-player.tsx
 │   │
 │   ├── data
+│   │   ├── tracks.ts
 │   │   └── videos.ts
 │   │
 │   ├── layouts
@@ -82,6 +83,7 @@
 ├── README.md
 ├── astro.config.mjs
 ├── bun.lockb
+├── Dockerfile
 ├── package.json
 ├── push.ps1
 ├── push.sh
