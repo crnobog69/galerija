@@ -31,6 +31,7 @@ export function VideoPlayer({
   const [duration, setDuration] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isCursorVisible, setIsCursorVisible] = useState(true);
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const timeoutRef = useRef<number | null>(null);
@@ -81,6 +82,7 @@ export function VideoPlayer({
     if (isPlaying) {
       timeoutRef.current = window.setTimeout(() => {
         setShowControls(false);
+        setIsCursorVisible(false);
       }, 3000);
     }
   };
@@ -88,6 +90,7 @@ export function VideoPlayer({
   useEffect(() => {
     const handleMouseMove = () => {
       setShowControls(true);
+      setIsCursorVisible(true);
       startHideControlsTimer();
     };
 
@@ -95,6 +98,7 @@ export function VideoPlayer({
       const isFullscreenNow = !!document.fullscreenElement;
       setIsFullscreen(isFullscreenNow);
       setShowControls(true);
+      setIsCursorVisible(true);
       if (isFullscreenNow && isPlaying) {
         startHideControlsTimer();
       }
@@ -125,6 +129,7 @@ export function VideoPlayer({
       startHideControlsTimer();
     } else {
       setShowControls(true);
+      setIsCursorVisible(true);
       if (timeoutRef.current) {
         window.clearTimeout(timeoutRef.current);
       }
@@ -192,9 +197,9 @@ export function VideoPlayer({
   return (
     <div
       ref={containerRef}
-      className={`relative w-full aspect-video bg-black ${
-        !isPopup && !isFullscreen ? "group" : ""
-      } ${showControls ? "cursor-default" : "cursor-none"}`}
+      className={`relative w-full aspect-video bg-black group ${
+        !isCursorVisible && isFullscreen ? "cursor-none" : ""
+      }`}
       onMouseLeave={() => {
         if (isPlaying && !isFullscreen) {
           setShowControls(false);
@@ -202,6 +207,7 @@ export function VideoPlayer({
       }}
       onMouseEnter={() => {
         setShowControls(true);
+        setIsCursorVisible(true);
         startHideControlsTimer();
       }}
     >
@@ -214,9 +220,9 @@ export function VideoPlayer({
         preload="metadata"
       />
       <div
-        className={`absolute inset-0 flex items-center justify-center ${
-          isPopup || isFullscreen ? "" : "opacity-0 group-hover:opacity-100"
-        } transition-opacity ${showControls ? "opacity-100" : "opacity-0"}`}
+        className={`absolute inset-0 flex items-center justify-center transition-opacity duration-300 ${
+          showControls ? "opacity-100" : "opacity-0"
+        } ${isPopup || isFullscreen ? "" : "opacity-0 group-hover:opacity-100"}`}
         onClick={togglePlay}
       >
         <button className="text-white p-4 rounded-full bg-black bg-opacity-50 hover:bg-opacity-70 transition-colors">
@@ -228,12 +234,14 @@ export function VideoPlayer({
         </button>
       </div>
       <div
-        className={`absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black to-transparent p-4 ${
+        className={`absolute -bottom-1 left-0 right-0 bg-gradient-to-t from-black via-black/50 to-transparent pb-0 ${
           isPopup || isFullscreen ? "" : "opacity-0 group-hover:opacity-100"
-        } transition-opacity duration-300 ${showControls ? "opacity-100" : "opacity-0"}`}
+        } transition-opacity duration-300 ${
+          showControls ? "opacity-100" : "opacity-0"
+        }`}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="flex flex-col space-y-2">
+        <div className="flex flex-col space-y-2 p-4">
           <input
             type="range"
             min="0"

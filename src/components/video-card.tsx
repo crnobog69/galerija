@@ -4,8 +4,6 @@ import { VideoPlayer } from "./video-player";
 
 export function VideoCard({ video }: { video: Video }) {
   const [showPopup, setShowPopup] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
 
   const togglePopup = () => {
     setShowPopup(!showPopup);
@@ -19,14 +17,9 @@ export function VideoCard({ video }: { video: Video }) {
 
   return (
     <div className="group relative bg-zinc-100 dark:bg-black border border-zinc-200 dark:border-white/10 rounded-lg overflow-hidden">
-      <VideoPlayer
-        video={video}
-        onOpenPopup={togglePopup}
-        currentTime={currentTime}
-        setCurrentTime={setCurrentTime}
-        isPlaying={isPlaying}
-        setIsPlaying={setIsPlaying}
-      />
+      <div className="w-full aspect-video">
+        <VideoPlayer video={video} onOpenPopup={togglePopup} />
+      </div>
       <div className="p-4">
         <h3 className="font-medium text-lg text-zinc-900 dark:text-white">
           {video.title}
@@ -39,14 +32,7 @@ export function VideoCard({ video }: { video: Video }) {
           onClick={handleOverlayClick}
         >
           <div className="bg-zinc-100 dark:bg-black p-4 rounded-lg shadow-xl max-w-4xl w-full border border-zinc-200 dark:border-white/10">
-            <VideoPlayer
-              video={video}
-              isPopup={true}
-              currentTime={currentTime}
-              setCurrentTime={setCurrentTime}
-              isPlaying={isPlaying}
-              setIsPlaying={setIsPlaying}
-            />
+            <VideoPlayer video={video} isPopup={true} />
             <div className="mt-4 flex justify-between items-center">
               <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
                 {video.title}
