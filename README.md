@@ -19,7 +19,7 @@
 │   └── Dockerfile
 │
 ├── .github
-│   └── dependabot.yml
+│   └── dependabot.yma
 │
 ├── .husky
 │   └── pre-commit
