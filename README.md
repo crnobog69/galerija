@@ -71,6 +71,7 @@
 │   │   └── video.astro
 │   │
 │   ├── styles
+│   │   ├── card-animations.css
 │   │   └── global.css
 │   │
 │   ├── env.d.ts
