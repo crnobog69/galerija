@@ -11,14 +11,14 @@ export interface Track {
 export const tracks: Track[] = [
   {
     id: "1",
-    title: "Missing Textures",
+    title: "Missing Textures - Slowed Down",
     artist: "NIVEK FFORHS",
     album: "Missing Textures",
     cover: "https://utfs.io/f/UDBxwoFcnD8kW0yr6WwH4GtZfmLRopl9NITSiYxqUrb2wkCg",
     audioSrc:
       "https://utfs.io/f/UDBxwoFcnD8kDgn7c7z6Xp9B05nSQEzkTJrUdGZ7yHbAFYc6",
     sourceUrl:
-      "https://open.spotify.com/track/3YsSke12CuFEJUpCysd4VU?si=903c035f34a74e5d",
+      "https://open.spotify.com/track/5u7Ow7JQjTFnrQoA0myBqI?si=9590bcde1a274beb",
   },
   {
     id: "2",
