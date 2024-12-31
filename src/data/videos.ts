@@ -193,4 +193,11 @@ export const videos: Video[] = [
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/jojo.mp4?t=2024-12-31T21%3A42%3A40.139Z",
   },
+  {
+    id: "28",
+    title: "Убиза Гоблина",
+    description: "goblinslayer.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/goblinslayer.mp4?t=2024-12-31T21%3A44%3A36.404Z",
+  },
 ];
