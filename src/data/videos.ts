@@ -49,6 +49,18 @@ export const videos: Video[] = [
     videoSrc: "https://i.imgur.com/gunIDJg.mp4",
   },
   {
+    id: "7",
+    title: "Токијски Злодух",
+    description: "eto1.mp4",
+    videoSrc: "https://i.imgur.com/euv4l5X.mp4",
+  },
+  {
+    id: "8",
+    title: "Токијски Злодух",
+    description: "eto2.mp4",
+    videoSrc: "https://i.imgur.com/KbxeElp.mp4",
+  },
+  {
     id: "8",
     title: "Токијски Злодух",
     description: "kaneki2.mp4",
@@ -124,6 +136,6 @@ export const videos: Video[] = [
     id: "20",
     title: "Токијски Злодух",
     description: "tokyoghoul2.mp4",
-    videoSrc: "https://i.imgur.com/HDP6e4a.mp4",
+    videoSrc: "https://i.imgur.com/LOO5FNf.mp4",
   },
 ];
