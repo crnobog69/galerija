@@ -56,6 +56,10 @@
   display: none !important;
 }
 
+.disable-leaves .LeavesContainer {
+  display: none !important;
+}
+
 @keyframes show {
   from {
     opacity: 0;

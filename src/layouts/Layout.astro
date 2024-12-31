@@ -5,13 +5,16 @@ import '../styles/card-animations.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 import Snow from '../components/snow';
+import Leaves from '../components/leaves.tsx';
 
 interface Props {
   title: string;
 }
 
 const { title } = Astro.props;
-const showSnow = new Date().getMonth() === 11 || new Date().getMonth() === 0; 
+const currentMonth = new Date().getMonth();
+const showSnow = currentMonth === 11 || currentMonth === 0; // Децембар (11) и Јануар (0)
+const showLeaves = currentMonth === 9 || currentMonth === 10; // Децембар (9) и Новембар (10)
 ---
 
 <!doctype html>
@@ -24,13 +27,18 @@ const showSnow = new Date().getMonth() === 11 || new Date().getMonth() === 0;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script>
-      
+      // Check snow settings
       const snowEnabled = localStorage.getItem('snow-enabled') !== 'false';
       if (!snowEnabled) {
         document.documentElement.classList.add('disable-snow');
       }
-
       
+      // Check leaves settings
+      const leavesEnabled = localStorage.getItem('leaves-enabled') !== 'false';
+      if (!leavesEnabled) {
+        document.documentElement.classList.add('disable-leaves');
+      }
+
       const theme = (() => {
         if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
@@ -53,7 +61,8 @@ const showSnow = new Date().getMonth() === 11 || new Date().getMonth() === 0;
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased dark:bg-black dark:text-white pt-14">
     <Header />
-    <Snow client:load />
+    {showSnow && <Snow client:load />}
+    {showLeaves && <Leaves client:load />}
     <slot />
     <Footer />
   </body>

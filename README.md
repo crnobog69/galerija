@@ -49,14 +49,14 @@
 │   │   │   └── ThemeToggle.astro
 │   │   │
 │   │   ├── ui
-│   │   │   ├── Container.astro
-│   │   │   ├── Card.astro
-│   │   │   ├── MusicPlayer.astro
-│   │   │   └── PhotoCard.astro
+│   │   │   └── Container.astro
 │   │   │
-│   │   └── video
-│   │       ├── video-card.tsx
-│   │       └── video-player.tsx
+│   │   ├── Card.astro
+│   │   ├── leaves.tsx
+│   │   ├── MusicPlayer.astro
+│   │   ├── PhotoCard.astro
+│   │   ├── video-card.tsx
+│   │   └── video-player.tsx
 │   │
 │   ├── data
 │   │   ├── tracks.ts
