@@ -46,6 +46,8 @@
 │   │   │   └── ImageModal.astro
 │   │   │
 │   │   ├── theme
+│   │   │   ├── LeavesToggle.astro
+│   │   │   ├── SnowToggle.astro
 │   │   │   └── ThemeToggle.astro
 │   │   │
 │   │   ├── ui
@@ -55,10 +57,12 @@
 │   │   ├── leaves.tsx
 │   │   ├── MusicPlayer.astro
 │   │   ├── PhotoCard.astro
+│   │   ├── snow.tsx
 │   │   ├── video-card.tsx
 │   │   └── video-player.tsx
 │   │
 │   ├── data
+│   │   ├── photos.ts
 │   │   ├── tracks.ts
 │   │   └── videos.ts
 │   │
