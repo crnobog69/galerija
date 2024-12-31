@@ -15,7 +15,7 @@ interface Props {
 const { title } = Astro.props;
 const currentMonth = new Date().getMonth();
 const showSnow = currentMonth === 11 || currentMonth === 0; // Децембар (11) и Јануар (0)
-const showLeaves = currentMonth === 9 || currentMonth === 11; // Децембар (9) и Новембар (10)
+const showLeaves = currentMonth === 9 || currentMonth === 10; // Децембар (9) и Новембар (10)
 ---
 
 <!doctype html>
