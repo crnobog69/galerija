@@ -4,8 +4,9 @@ import '../styles/global.css';
 import '../styles/card-animations.css';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
-import Snow from '../components/snow';
+import Snowfall from 'react-snowfall';
 import Leaves from '../components/leaves.tsx';
+import Snow from '../components/snow.tsx';
 
 interface Props {
   title: string;
@@ -27,13 +28,13 @@ const showLeaves = currentMonth === 9 || currentMonth === 10; // Децемба�
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script>
-      // Check snow settings
+      
       const snowEnabled = localStorage.getItem('snow-enabled') !== 'false';
       if (!snowEnabled) {
         document.documentElement.classList.add('disable-snow');
       }
       
-      // Check leaves settings
+      
       const leavesEnabled = localStorage.getItem('leaves-enabled') !== 'false';
       if (!leavesEnabled) {
         document.documentElement.classList.add('disable-leaves');
@@ -53,17 +54,14 @@ const showLeaves = currentMonth === 9 || currentMonth === 10; // Децемба�
         document.documentElement.classList.add('dark');
       }
     </script>
-    <style is:global>
-      .disable-snow .SnowContainer {
-        display: none !important;
-      }
-    </style>
   </head>
   <body class="min-h-screen bg-white text-gray-900 antialiased dark:bg-black dark:text-white pt-14">
     <Header />
-    {showSnow && <Snow client:load />}
-    {showLeaves && <Leaves client:load />}
-    <slot />
+    <div class="relative z-10">
+      <slot />
+    </div>
+        {showSnow && <Snow client:only="react" />}
+        {showLeaves && <Leaves client:only="react" />}
     <Footer />
   </body>
 </html>

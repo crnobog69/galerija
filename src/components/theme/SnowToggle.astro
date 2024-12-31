@@ -30,13 +30,14 @@ const initialSnowEnabled = typeof localStorage !== 'undefined' ? localStorage.ge
   const snowEnabled = document.getElementById('snow-enabled');
   const snowDisabled = document.getElementById('snow-disabled');
   
-  const updateSnowState = (enabled) => {
+  const updateSnowState = (enabled: boolean) => {
+    const root = document.documentElement;
     if (enabled) {
-      document.documentElement.classList.remove('disable-snow');
+      root.classList.remove('disable-snow');
       snowEnabled?.classList.remove('hidden');
       snowDisabled?.classList.add('hidden');
     } else {
-      document.documentElement.classList.add('disable-snow');
+      root.classList.add('disable-snow');
       snowEnabled?.classList.add('hidden');
       snowDisabled?.classList.remove('hidden');
     }
@@ -46,7 +47,9 @@ const initialSnowEnabled = typeof localStorage !== 'undefined' ? localStorage.ge
   btn?.addEventListener('click', () => {
     const isCurrentlyEnabled = !document.documentElement.classList.contains('disable-snow');
     updateSnowState(!isCurrentlyEnabled);
+    window.dispatchEvent(new Event('toggleSnow'));
   });
 
+  // Set initial state
   updateSnowState(localStorage.getItem('snow-enabled') !== 'false');
 </script>

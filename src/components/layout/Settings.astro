@@ -22,11 +22,11 @@ import LeavesToggle from '../theme/LeavesToggle.astro';
       <ThemeToggle />
     </div>
     <div class="px-4 py-2 flex items-center justify-between">
-      <span class="text-sm text-gray-900 dark:text-white">Снег</span>
+      <span class="text-sm text-gray-900 dark:text-white">Зима</span>
       <SnowToggle />
     </div>
     <div class="px-4 py-2 flex items-center justify-between">
-      <span class="text-sm text-gray-900 dark:text-white">Листови</span>
+      <span class="text-sm text-gray-900 dark:text-white">Јесен</span>
       <LeavesToggle />
     </div>
   </div>
@@ -40,7 +40,6 @@ import LeavesToggle from '../theme/LeavesToggle.astro';
     settingsDropdown?.classList.toggle('hidden');
   });
 
-  // Close dropdown when clicking outside
   document.addEventListener('click', (event) => {
     if (!settingsButton?.contains(event.target as Node) && !settingsDropdown?.contains(event.target as Node)) {
       settingsDropdown?.classList.add('hidden');

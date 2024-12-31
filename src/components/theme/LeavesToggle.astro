@@ -39,12 +39,13 @@ const initialLeavesEnabled = typeof localStorage !== 'undefined'
   const leavesDisabled = document.getElementById('leaves-disabled');
   
   const updateLeavesState = (enabled: boolean) => {
+    const root = document.documentElement;
     if (enabled) {
-      document.documentElement.classList.remove('disable-leaves');
+      root.classList.remove('disable-leaves');
       leavesEnabled?.classList.remove('hidden');
       leavesDisabled?.classList.add('hidden');
     } else {
-      document.documentElement.classList.add('disable-leaves');
+      root.classList.add('disable-leaves');
       leavesEnabled?.classList.add('hidden');
       leavesDisabled?.classList.remove('hidden');
     }
@@ -54,7 +55,9 @@ const initialLeavesEnabled = typeof localStorage !== 'undefined'
   btn?.addEventListener('click', () => {
     const isCurrentlyEnabled = !document.documentElement.classList.contains('disable-leaves');
     updateLeavesState(!isCurrentlyEnabled);
+    window.dispatchEvent(new Event('toggleLeaves'));
   });
 
+  // Set initial state
   updateLeavesState(localStorage.getItem('leaves-enabled') !== 'false');
 </script>

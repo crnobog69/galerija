@@ -1,85 +1,40 @@
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import Snowfall from "react-snowfall";
 
-interface Snowflake {
-  id: number;
-  left: number;
-  size: number;
-  opacity: number;
-  animationDuration: number;
-  drift: number;
-}
-
-const fallAnimation = `
-  @keyframes fall {
-    0% {
-      transform: translate(0, -10px);
-    }
-    100% {
-      transform: translate(var(--drift), 100vh);
-    }
-  }
-`;
-
-const Snow: React.FC = () => {
-  const [snowflakes, setSnowflakes] = useState<Snowflake[]>([]);
+export default function SnowEffect() {
+  const [showSnow, setShowSnow] = useState(
+    localStorage.getItem("snow-enabled") !== "false"
+  );
 
   useEffect(() => {
-    const initialSnowflakes: Snowflake[] = Array.from(
-      { length: 35 },
-      (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        size: Math.random() * 4 + 2,
-        opacity: Math.random() * 0.4 + 0.3,
-        animationDuration: Math.random() * 15 + 10,
-        drift: Math.random() * 100 - 50,
-      })
-    );
+    const handleToggleSnow = () => {
+      setShowSnow(!document.documentElement.classList.contains("disable-snow"));
+    };
 
-    setSnowflakes(initialSnowflakes);
+    window.addEventListener("toggleSnow", handleToggleSnow);
 
-    const interval = setInterval(() => {
-      setSnowflakes((prev) =>
-        [
-          ...prev,
-          {
-            id: Date.now(),
-            left: Math.random() * 100,
-            size: Math.random() * 4 + 2,
-            opacity: Math.random() * 0.4 + 0.3,
-            animationDuration: Math.random() * 15 + 10,
-            drift: Math.random() * 100 - 50,
-          },
-        ].slice(-35)
-      );
-    }, 500);
-
-    return () => clearInterval(interval);
+    return () => {
+      window.removeEventListener("toggleSnow", handleToggleSnow);
+    };
   }, []);
 
   return (
-    <div className="SnowContainer fixed inset-0 pointer-events-none overflow-hidden">
-      {snowflakes.map((flake) => (
-        <div
-          key={flake.id}
-          className="absolute rounded-full bg-white"
-          style={
-            {
-              left: `${flake.left}%`,
-              width: `${flake.size}px`,
-              height: `${flake.size}px`,
-              opacity: flake.opacity,
-              animation: `fall ${flake.animationDuration}s linear infinite`,
-              top: "-10px",
-              willChange: "transform",
-              "--drift": `${flake.drift}px`,
-            } as React.CSSProperties
-          }
+    <>
+      {showSnow && (
+        <Snowfall
+          color="white"
+          snowflakeCount={350}
+          speed={[0.1, 1]}
+          wind={[-0.5, 0]}
+          radius={[0.5, 1]}
+          style={{
+            position: "fixed",
+            width: "100vw",
+            height: "100vh",
+            zIndex: -1000,
+          }}
         />
-      ))}
-      <style>{fallAnimation}</style>
-    </div>
+      )}
+    </>
   );
-};
-
-export default Snow;
+}
