@@ -195,7 +195,7 @@ export const videos: Video[] = [
   },
   {
     id: "28",
-    title: "Убиза Гоблина",
+    title: "Убица Гоблина",
     description: "goblinslayer.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/goblinslayer.mp4?t=2024-12-31T21%3A44%3A36.404Z",
