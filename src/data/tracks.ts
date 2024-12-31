@@ -14,9 +14,10 @@ export const tracks: Track[] = [
     title: "Missing Textures - Slowed Down",
     artist: "NIVEK FFORHS",
     album: "Missing Textures",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kW0yr6WwH4GtZfmLRopl9NITSiYxqUrb2wkCg",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/missing-textures.webp?t=2024-12-31T19%3A52%3A50.382Z",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kDgn7c7z6Xp9B05nSQEzkTJrUdGZ7yHbAFYc6",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/missing-textures.mp3?t=2024-12-31T20%3A09%3A41.103Z",
     sourceUrl:
       "https://open.spotify.com/track/5u7Ow7JQjTFnrQoA0myBqI?si=9590bcde1a274beb",
   },
@@ -25,9 +26,10 @@ export const tracks: Track[] = [
     title: "Mis",
     artist: "Alex G",
     album: "Rules",
-    cover: "https://utfs.io/f/UDBxwoFcnD8k2uaTpVGfEZ2aoApnJgjdNsUPV3ISk7xG4v1t",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/mis.webp",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kSZCKTeZhtL3kd6FE9o2BRhl8sOAVxXMiW5az",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/mis.mp3?t=2024-12-31T20%3A09%3A48.540Z",
     sourceUrl:
       "https://open.spotify.com/track/0lGTVZfU82bYT2uJw22Kz4?si=5ab9a9c8f877434b",
   },
@@ -36,9 +38,10 @@ export const tracks: Track[] = [
     title: "Keep It Tucked",
     artist: "ThxSoMuch",
     album: "Keep It Tucked",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kh23FdSaDcB4I5aAmfP9zGYOqk71EjoRMNT6g",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/keepittucked.png",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kTdutVqjoKO2HIB4sf80i96naewEGNM3W5tlm",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/keepittucked.mp3?t=2024-12-31T20%3A10%3A00.570Z",
     sourceUrl:
       "https://open.spotify.com/track/1EdQCb51lC8usq47IMhADP?si=79843b87a8d34971",
   },
@@ -47,9 +50,10 @@ export const tracks: Track[] = [
     title: "Monolith",
     artist: "Twin Tribes",
     album: "Monolith",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kwWTjcGEcBAh6fdyGuNMTmts27pP98nQi3x0X",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/monolith.webp",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kt1JDbh8iPmRbKn9k6lXiQYHSWqyVaDp4BMeu",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/monolith.mp3?t=2024-12-31T20%3A10%3A07.416Z",
     sourceUrl:
       "https://open.spotify.com/track/3U0UXxBIfjUsJ8RtxoxUFn?si=c87650e16a354804",
   },
@@ -58,9 +62,10 @@ export const tracks: Track[] = [
     title: "loud room",
     artist: "lumisoun",
     album: "loud room",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kGyeb9WTmKC6fxIvLWdE3TDkgRjZbqPBc5Miu",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/loudroom.jpg",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kt7MWJAiPmRbKn9k6lXiQYHSWqyVaDp4BMeu2",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/loudroom.mp3?t=2024-12-31T20%3A10%3A18.630Z",
     sourceUrl:
       "https://open.spotify.com/track/2bDI4MoDC6eiaXrJExSmbB?si=c67d7e4d38424848",
   },
@@ -69,9 +74,10 @@ export const tracks: Track[] = [
     title: "Kuchuu Buranko",
     artist: "ROCKSTXR!, Ronerom",
     album: "Kuchuu Buranko",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kS2fwSShtL3kd6FE9o2BRhl8sOAVxXMiW5azY",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/KuchuuBuranko.jpeg",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8k12LJ5hUIej4PpZDUCzhSyHdJKqiluba8wGMv",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/KuuchuBuranko.mp3?t=2024-12-31T20%3A10%3A24.339Z",
     sourceUrl:
       "https://open.spotify.com/track/76wYJ52u3p4eRzMdHomDag?si=6610c5303c34400a",
   },
@@ -80,9 +86,10 @@ export const tracks: Track[] = [
     title: "STYX HELIX",
     artist: "MYTH & ROID",
     album: "eYe's",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kIToBJkQ6VEshwUfMkB8cHNubdDiWzlXgjJQe",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/styxhelix.jpeg",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kY7GmH9A0ex6HjvfGDycO98sXFQzSgdZ253hb",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/styxhelix.mp3?t=2024-12-31T20%3A10%3A30.773Z",
     sourceUrl:
       "https://open.spotify.com/track/2tcSz3bcJqriPg9vetvJLs?si=f2df9e4afc2b47ee",
   },
@@ -91,9 +98,10 @@ export const tracks: Track[] = [
     title: "welcome and goodbye",
     artist: "Dream, Ivory",
     album: "welcome and goodbye",
-    cover: "https://utfs.io/f/UDBxwoFcnD8k2U989WGfEZ2aoApnJgjdNsUPV3ISk7xG4v1t",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/welcomeandgoodbye.jpeg",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8kXubu7SDoNEAFIgHXZy7LOx6aGKqWUpJrTCfv",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/welcomeandgoodbye.mp3?t=2024-12-31T20%3A10%3A38.103Z",
     sourceUrl:
       "https://open.spotify.com/track/00RLNHc2jkEjUoCUlFgPVT?si=61d18b62ab234d54",
   },
@@ -102,9 +110,10 @@ export const tracks: Track[] = [
     title: "Memory Reboot - Sped Up",
     artist: "VØJ, Narvent",
     album: "Memory Reboot- Sped Up",
-    cover: "https://utfs.io/f/UDBxwoFcnD8kvB473KqAdQpuKXya2I0jOB7LPDGfRghU9C34",
+    cover:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/artwork/memoryreboot.jpeg",
     audioSrc:
-      "https://utfs.io/f/UDBxwoFcnD8krfeh3uyx2m74vSatG3KIThXlMUkgfCR5jbnE",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/audio/song/memoryreboot.mp3?t=2024-12-31T20%3A10%3A45.620Z",
     sourceUrl:
       "https://open.spotify.com/album/46Mt99EZGmVa4GFvfQyZLE?si=oBtsYsSxSR69TOqav7jMkQ",
   },
