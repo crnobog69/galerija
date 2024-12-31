@@ -45,6 +45,10 @@
 │   │   ├── modal
 │   │   │   └── ImageModal.astro
 │   │   │
+│   │   ├── seasons
+│   │   │   ├── leaves.tsx
+│   │   │   └── snow.tsx
+│   │   │
 │   │   ├── theme
 │   │   │   ├── LeavesToggle.astro
 │   │   │   ├── SnowToggle.astro
@@ -54,10 +58,8 @@
 │   │   │   └── Container.astro
 │   │   │
 │   │   ├── Card.astro
-│   │   ├── leaves.tsx
 │   │   ├── MusicPlayer.astro
 │   │   ├── PhotoCard.astro
-│   │   ├── snow.tsx
 │   │   ├── video-card.tsx
 │   │   └── video-player.tsx
 │   │
