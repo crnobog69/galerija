@@ -40,7 +40,8 @@
 │   │   ├── layout
 │   │   │   ├── Footer.astro
 │   │   │   ├── Header.astro
-│   │   │   └── Logo.astro
+│   │   │   ├── Logo.astro
+│   │   │   └── Settings.astro
 │   │   │
 │   │   ├── modal
 │   │   │   └── ImageModal.astro
@@ -55,13 +56,14 @@
 │   │   │   └── ThemeToggle.astro
 │   │   │
 │   │   ├── ui
-│   │   │   └── Container.astro
+│   │   │   ├── Container.astro
+│   │   │   ├── Header.astro
+│   │   │   └── VideoContainer.astro
 │   │   │
 │   │   ├── Card.astro
 │   │   ├── MusicPlayer.astro
 │   │   ├── PhotoCard.astro
-│   │   ├── video-card.tsx
-│   │   └── video-player.tsx
+│   │   └── VideoPlayer.tsx
 │   │
 │   ├── data
 │   │   ├── photos.ts
@@ -78,7 +80,9 @@
 │   │
 │   ├── styles
 │   │   ├── card-animations.css
-│   │   └── global.css
+│   │   ├── global.css
+│   │   └── video-player.css
+│   │
 │   │
 │   ├── env.d.ts
 │   └── types.ts

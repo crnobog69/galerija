@@ -1,11 +1,5 @@
-<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-  <g id="color">
-    <path fill="#FFFFFF" stroke="none" d="M38.4549,57.1464l22.2257-38.4961c1.0911-1.8898-0.2728-4.252-2.4549-4.252l-44.4514,0 c-2.1821,0-3.5459,2.3622-2.4549,4.252l22.2257,38.4961C34.6362,59.0362,37.3638,59.0362,38.4549,57.1464z"/>
-  </g>
-  <g id="hair"/>
-  <g id="skin"/>
-  <g id="skin-shadow"/>
-  <g id="line">
-    <path fill="none" stroke="#000000" stroke-miterlimit="10" stroke-width="2" d="M38.4549,57.1464l22.2257-38.4961 c1.0911-1.8898-0.2728-4.252-2.4549-4.252l-44.4514,0c-2.1821,0-3.5459,2.3622-2.4549,4.252l22.2257,38.4961 C34.6362,59.0362,37.3638,59.0362,38.4549,57.1464z"/>
-  </g>
-</svg>
+  <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 16L8.586 11.414C9.367 10.633 10.633 10.633 11.414 11.414L16 16" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <path d="M14 14L15.586 12.414C16.367 11.633 17.633 11.633 18.414 12.414L20 14" stroke="white" stroke-width="2" stroke-linecap="round"/>
+    <circle cx="8" cy="8" r="2" stroke="white" stroke-width="2"/>
+  </svg>
