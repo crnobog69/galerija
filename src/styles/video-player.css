@@ -1,0 +1,24 @@
+.media-player:focus-within,
+.media-player:focus,
+.media-player *:focus,
+.media-player div:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent space from scrolling when player is focused */
+.media-player:focus-within ~ * {
+  scroll-margin-block: 999999px;
+}
+
+@media (max-width: 768px) {
+  .custom-play-overlay {
+    display: none !important;
+  }
+}
+
+/* Remove focus ring from all interactive elements within the player */
+.vds-video-layout *:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
