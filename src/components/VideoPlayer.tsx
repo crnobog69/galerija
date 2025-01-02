@@ -1,7 +1,7 @@
 import "@vidstack/react/player/styles/default/theme.css";
 import "@vidstack/react/player/styles/default/layouts/video.css";
 import "../styles/video-player.css";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 import {
   MediaPlayer,
@@ -17,6 +17,7 @@ import {
 interface VideoPlayerProps {
   src: string;
   title: string;
+  id: string;
 }
 
 const customLayoutProps: DefaultLayoutProps = {
@@ -42,11 +43,16 @@ const PlayIcon = () => (
   </svg>
 );
 
-export function VideoPlayer({ src, title }: VideoPlayerProps) {
+export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
   const [isPaused, setIsPaused] = useState(true);
+  const [isSourceLoaded, setIsSourceLoaded] = useState(false);
   const playerRef = useRef<MediaPlayerInstance>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  useEffect(() => {
+    setIsLoaded(true);
+  }, []);
 
   const handlePlayClick = () => {
     if (playerRef.current) {
@@ -58,32 +64,40 @@ export function VideoPlayer({ src, title }: VideoPlayerProps) {
     }
   };
 
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (!isFocused) return;
-
-      e.stopPropagation();
-      if (e.key === " ") {
-        e.preventDefault();
-        handlePlayClick();
-      }
-    };
-
-    if (containerRef.current) {
-      containerRef.current.addEventListener("keydown", handleKeyDown);
-      return () => {
-        containerRef.current?.removeEventListener("keydown", handleKeyDown);
-      };
+  const handleSeek = (direction: "forward" | "backward") => {
+    if (playerRef.current) {
+      const currentTime = playerRef.current.currentTime;
+      const newTime =
+        direction === "forward" ? currentTime + 10 : currentTime - 10;
+      playerRef.current.currentTime = Math.max(
+        0,
+        Math.min(newTime, playerRef.current.duration)
+      );
     }
-  }, [isFocused]);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (!isFocused) return;
+
+    if (e.key === "ArrowRight") {
+      e.preventDefault();
+      handleSeek("forward");
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      handleSeek("backward");
+    } else if (e.key === " ") {
+      e.preventDefault();
+      handlePlayClick();
+    }
+  };
 
   return (
     <div
-      ref={containerRef}
-      className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group outline-none"
+      className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group w-full focus:outline-none"
+      tabIndex={0}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      tabIndex={0} // Changed from -1 to 0 to make it focusable
+      onKeyDown={handleKeyDown}
     >
       <MediaPlayer
         ref={playerRef}
@@ -93,17 +107,14 @@ export function VideoPlayer({ src, title }: VideoPlayerProps) {
         playsInline
         onPlay={() => setIsPaused(false)}
         onPause={() => setIsPaused(true)}
-        keyTarget="player" // Changed from "document" to "player"
-        keyShortcuts={{
-          seekBackward: "ArrowLeft",
-          seekForward: "ArrowRight",
-          togglePaused: " ",
-        }}
+        keyDisabled={true}
+        id={`player-${id}`}
+        onCanPlay={() => setIsSourceLoaded(true)}
       >
         <MediaProvider />
-        <DefaultVideoLayout {...customLayoutProps} />
+        <DefaultVideoLayout {...customLayoutProps} thumbnails="" />
       </MediaPlayer>
-      {isPaused && (
+      {isPaused && isSourceLoaded && (
         <div
           className="absolute inset-0 items-center justify-center bg-black/30 transition-opacity group-hover:bg-black/40 cursor-pointer hidden md:flex"
           onClick={handlePlayClick}

@@ -22,3 +22,12 @@
   outline: none !important;
   box-shadow: none !important;
 }
+
+.media-player {
+  --media-z-index: 0;
+}
+
+.vds-audio-layout,
+.vds-video-layout {
+  --media-controls-z-index: 1;
+}

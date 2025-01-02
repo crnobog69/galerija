@@ -3,37 +3,41 @@ import Layout from '../layouts/Layout.astro';
 import VideoContainer from '../components/ui/VideoContainer.astro';
 import { VideoPlayer } from '../components/VideoPlayer';
 import { videos } from "../data/videos";
+import Container from '../components/ui/Container.astro';
 
 const title = "Видео";
 ---
 
 <Layout title={title}>
-  <VideoContainer>
+  <Container>
     <main class="py-8">
       <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">
-        Видео библиотека
+        Видео <br class="md:hidden"/> библиотека
       </h1>
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-6 px-0 lg:px-8">
-        {videos.map((video) => (
-          <div class="animate-on-scroll bg-zinc-100 dark:bg-black rounded-lg shadow-xs border-[0.5px] border-zinc-200/50 dark:border-zinc-800/50 max-w-4xl mx-auto">
-            <VideoPlayer 
-              src={video.videoSrc}
-              title={video.id}
-              client:load
-            />
-            <div class="p-3">
-              <h2 class="font-medium text-base text-zinc-900 dark:text-zinc-50">
-                {video.title}
-              </h2>
-              <p class="mt-0.5 text-sm text-zinc-500 dark:text-zinc-400">
-                {video.description}
-              </p>
+      <VideoContainer>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 -mx-4 md:mx-0">
+          {videos.map((video) => (
+            <div class="w-full bg-zinc-100 dark:bg-black rounded-lg shadow-xs border-[0.5px] border-zinc-200/50 dark:border-zinc-800/50">
+              <VideoPlayer 
+                src={video.videoSrc}
+                title={video.id}
+                id={video.id}
+                client:load
+              />
+              <div class="p-3.5">
+                <h2 class="font-medium text-lg text-zinc-900 dark:text-zinc-50">
+                  {video.title}
+                </h2>
+                <p class="mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                  {video.description}
+                </p>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </VideoContainer>
     </main>
-  </VideoContainer>
+  </Container>
 </Layout>
 
 <style>
