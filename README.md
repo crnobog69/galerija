@@ -11,6 +11,8 @@
 </p>
 </div>
 
+### <p align="center">[Vercel](https://cgalerija.vercel.app/) | [Cloudflare](https://cgalerija.pages.dev)</p>
+
 <br>
 
 ```text
