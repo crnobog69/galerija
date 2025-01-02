@@ -60,14 +60,21 @@ export function VideoPlayer({ src, title }: VideoPlayerProps) {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === " " && isFocused) {
+      if (!isFocused) return;
+
+      e.stopPropagation();
+      if (e.key === " ") {
         e.preventDefault();
         handlePlayClick();
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown, true);
-    return () => window.removeEventListener("keydown", handleKeyDown, true);
+    if (containerRef.current) {
+      containerRef.current.addEventListener("keydown", handleKeyDown);
+      return () => {
+        containerRef.current?.removeEventListener("keydown", handleKeyDown);
+      };
+    }
   }, [isFocused]);
 
   return (
@@ -76,7 +83,7 @@ export function VideoPlayer({ src, title }: VideoPlayerProps) {
       className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group outline-none"
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
-      tabIndex={-1}
+      tabIndex={0} // Changed from -1 to 0 to make it focusable
     >
       <MediaPlayer
         ref={playerRef}
@@ -86,9 +93,7 @@ export function VideoPlayer({ src, title }: VideoPlayerProps) {
         playsInline
         onPlay={() => setIsPaused(false)}
         onPause={() => setIsPaused(true)}
-        keyDisabled={false}
-        className="media-player"
-        keyTarget="document"
+        keyTarget="player" // Changed from "document" to "player"
         keyShortcuts={{
           seekBackward: "ArrowLeft",
           seekForward: "ArrowRight",
