@@ -39,7 +39,7 @@ export const videos: Video[] = [
     title: "Токијски Злодух",
     description: "arima2.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima2.mp4?t=2024-12-31T19%3A10%3A49.320Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima2.mp4",
   },
   {
     id: "6",
@@ -49,183 +49,211 @@ export const videos: Video[] = [
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima3.mp4",
   },
   {
-    id: "6",
+    id: "7",
+    title: "Токијски Злодух",
+    description: "arima4-jp.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima4-jp.mp4",
+  },
+  {
+    id: "8",
+    title: "Токијски Злодух",
+    description: "arima4-en.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima4-en.mp4",
+  },
+  {
+    id: "9",
+    title: "Токијски Злодух",
+    description: "arima5.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima5.mp4",
+  },
+  {
+    id: "10",
+    title: "Токијски Злодух",
+    description: "arima6.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima6.mp4",
+  },
+  {
+    id: "11",
     title: "Токијски Злодух",
     description: "kaneki1.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki1.mp4",
   },
   {
-    id: "7",
+    id: "12",
     title: "Токијски Злодух",
     description: "kaneki3.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki3.mp4?t=2024-12-31T19%3A11%3A38.214Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki3.mp4",
   },
   {
-    id: "8",
+    id: "13",
     title: "Токијски Злодух",
     description: "kaneki5.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki5.mp4",
   },
   {
-    id: "9",
+    id: "14",
     title: "Токијски Злодух",
     description: "eto1.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/eto1.mp4?t=2024-12-31T19%3A12%3A27.546Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/eto1.mp4",
   },
   {
-    id: "10",
+    id: "15",
     title: "Токијски Злодух",
     description: "eto2.mp4",
     videoSrc: "https://i.imgur.com/KbxeElp.mp4",
   },
   {
-    id: "11",
+    id: "16",
     title: "Токијски Злодух",
     description: "kaneki2.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki2.mp4",
   },
   {
-    id: "12",
+    id: "17",
     title: "Моногатари",
     description: "monogatari.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/monogatari.mp4",
   },
   {
-    id: "13",
+    id: "18",
     title: "Избељивач",
     description: "ichigo.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ichigo.mp4",
   },
   {
-    id: "14",
+    id: "19",
     title: "Избељивач",
     description: "yhwach6.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/yhwach6.mp4",
   },
   {
-    id: "15",
+    id: "20",
     title: "Судбина/Велики Поредак",
     description: "jalter.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/jalter.mp4",
   },
   {
-    id: "16",
+    id: "21",
     title: "Судбина/Велики Поредак",
     description: "oberon.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/oberon.mp4",
   },
   {
-    id: "17",
+    id: "22",
     title: "Човек Тестера",
     description: "makima.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/makima.mp4",
   },
   {
-    id: "18",
+    id: "23",
     title: "The Saga of Tanya the Evil",
     description: "tanya.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/tanya.mp4",
   },
   {
-    id: "19",
+    id: "24",
     title: "Серијски експерименти Леин",
     description: "lain.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/lain.mp4",
   },
   {
-    id: "20",
+    id: "25",
     title: "Рагна Кримзон",
     description: "ragna.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ragna.mp4?t=2024-12-31T19%3A23%3A23.296Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ragna.mp4",
   },
   {
-    id: "21",
+    id: "26",
     title: "Плаво",
     description: "blue.mp4",
     videoSrc: "https://i.imgur.com/pkncUCo.mp4",
   },
   {
-    id: "22",
+    id: "27",
     title: "Елден Ринг",
     description: "eldenring.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/eldenring.mp4",
   },
   {
-    id: "23",
+    id: "28",
     title: "Токијски Злодух",
     description: "tokyoghoul2.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/tokyoghoul2.mp4",
   },
   {
-    id: "24",
+    id: "29",
     title: "K2",
     description: "k2.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/k2.mp4",
   },
   {
-    id: "25",
+    id: "30",
     title: "Змија",
     description: "snake.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/snake.mp4?t=2024-12-31T21%3A41%3A40.618Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/snake.mp4",
   },
   {
-    id: "26",
+    id: "31",
     title: "Џоџоове Бизарне Авантуре",
     description: "WonderOfU.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/WonderOfU.mp4",
   },
   {
-    id: "27",
+    id: "32",
     title: "Џоџоове Бизарне Авантуре",
     description: "jojo.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/jojo.mp4?t=2024-12-31T21%3A42%3A40.139Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/jojo.mp4",
   },
   {
-    id: "28",
+    id: "33",
     title: "Убица Гоблина",
     description: "goblinslayer.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/goblinslayer.mp4?t=2024-12-31T21%3A44%3A36.404Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/goblinslayer.mp4",
   },
   {
-    id: "29",
+    id: "34",
     title: "из",
     description: "iz.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/iz.mp4?t=2025-01-05T12%3A42%3A51.812Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/iz.mp4",
   },
   {
-    id: "30",
+    id: "35",
     title: "Деран не сања",
     description: "bgs.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs.mp4?t=2025-01-05T12%3A47%3A56.411Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs.mp4",
   },
   {
-    id: "31",
+    id: "36",
     title: "Деран не сања",
     description: "bgs2.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs2.mp4?t=2025-01-05T12%3A53%3A17.271Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs2.mp4",
   },
 ];
