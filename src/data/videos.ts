@@ -226,6 +226,6 @@ export const videos: Video[] = [
     title: "Деран не сања",
     description: "bgs2.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs.mp4?t=2025-01-05T12%3A47%3A56.411Z",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs2.mp4?t=2025-01-05T12%3A53%3A17.271Z",
   },
 ];
