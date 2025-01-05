@@ -47,6 +47,7 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
   const [isPaused, setIsPaused] = useState(true);
   const [isSourceLoaded, setIsSourceLoaded] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const [hasBeenVisible, setHasBeenVisible] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<MediaPlayerInstance>(null);
   const [isFocused, setIsFocused] = useState(false);
@@ -60,6 +61,9 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setHasBeenVisible(true);
+        }
       },
       {
         threshold: 0.1,
@@ -76,7 +80,7 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
 
   useEffect(() => {
     if (playerRef.current) {
-      playerRef.current.volume = 0.5; // Set volume to 50%
+      playerRef.current.volume = 0.5;
     }
   }, [isVisible]);
 
@@ -126,11 +130,11 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
       onBlur={() => setIsFocused(false)}
       onKeyDown={handleKeyDown}
     >
-      {!isVisible && (
+      {!hasBeenVisible && (
         <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800/50 animate-pulse" />
       )}
 
-      {isVisible && (
+      {hasBeenVisible && (
         <div
           className={`transition-opacity duration-300 ${isSourceLoaded ? "opacity-100" : "opacity-0"}`}
         >
