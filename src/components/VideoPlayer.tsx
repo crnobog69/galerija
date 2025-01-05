@@ -74,6 +74,12 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (playerRef.current) {
+      playerRef.current.volume = 0.5; // Set volume to 50%
+    }
+  }, [isVisible]);
+
   const handlePlayClick = () => {
     if (playerRef.current) {
       if (playerRef.current.paused) {
@@ -139,6 +145,7 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
             keyDisabled={true}
             id={`player-${id}`}
             onCanPlay={() => setIsSourceLoaded(true)}
+            volume={0.5}
           >
             <MediaProvider />
             <DefaultVideoLayout {...customLayoutProps} thumbnails="" />

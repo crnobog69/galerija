@@ -18,12 +18,14 @@ const title = "Видео";
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 -mx-4 md:mx-0">
           {videos.map((video) => (
             <div class="w-full bg-zinc-100 dark:bg-black rounded-lg shadow-xs border-[0.5px] border-zinc-200/50 dark:border-zinc-800/50">
-              <VideoPlayer 
-                src={video.videoSrc}
-                title={video.id}
-                id={video.id}
-                client:load
-              />
+              <div class="aspect-video bg-zinc-200 dark:bg-zinc-800/50">
+                <VideoPlayer 
+                  src={video.videoSrc}
+                  title={video.id}
+                  id={video.id}
+                  client:visible
+                />
+              </div>
               <div class="p-3.5">
                 <h2 class="font-medium text-lg text-zinc-900 dark:text-zinc-50">
                   {video.title}
