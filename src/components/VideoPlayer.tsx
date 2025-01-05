@@ -114,28 +114,36 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
   return (
     <div
       ref={containerRef}
-      className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group w-full focus:outline-none"
+      className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group w-full focus:outline-none h-full"
       tabIndex={0}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onKeyDown={handleKeyDown}
     >
+      {!isVisible && (
+        <div className="absolute inset-0 bg-zinc-200 dark:bg-zinc-800/50 animate-pulse" />
+      )}
+
       {isVisible && (
-        <MediaPlayer
-          ref={playerRef}
-          src={src}
-          title={title}
-          aspectRatio="16/9"
-          playsInline
-          onPlay={() => setIsPaused(false)}
-          onPause={() => setIsPaused(true)}
-          keyDisabled={true}
-          id={`player-${id}`}
-          onCanPlay={() => setIsSourceLoaded(true)}
+        <div
+          className={`transition-opacity duration-300 ${isSourceLoaded ? "opacity-100" : "opacity-0"}`}
         >
-          <MediaProvider />
-          <DefaultVideoLayout {...customLayoutProps} thumbnails="" />
-        </MediaPlayer>
+          <MediaPlayer
+            ref={playerRef}
+            src={src}
+            title={title}
+            aspectRatio="16/9"
+            playsInline
+            onPlay={() => setIsPaused(false)}
+            onPause={() => setIsPaused(true)}
+            keyDisabled={true}
+            id={`player-${id}`}
+            onCanPlay={() => setIsSourceLoaded(true)}
+          >
+            <MediaProvider />
+            <DefaultVideoLayout {...customLayoutProps} thumbnails="" />
+          </MediaPlayer>
+        </div>
       )}
       {isPaused && isSourceLoaded && (
         <div
