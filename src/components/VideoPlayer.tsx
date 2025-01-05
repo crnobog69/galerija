@@ -46,12 +46,32 @@ const PlayIcon = () => (
 export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
   const [isPaused, setIsPaused] = useState(true);
   const [isSourceLoaded, setIsSourceLoaded] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const playerRef = useRef<MediaPlayerInstance>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
+  }, []);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+        rootMargin: "50px",
+      }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   const handlePlayClick = () => {
@@ -93,27 +113,30 @@ export function VideoPlayer({ src, title, id }: VideoPlayerProps) {
 
   return (
     <div
+      ref={containerRef}
       className="relative overflow-hidden rounded-t-xl bg-zinc-100 dark:bg-black group w-full focus:outline-none"
       tabIndex={0}
       onFocus={() => setIsFocused(true)}
       onBlur={() => setIsFocused(false)}
       onKeyDown={handleKeyDown}
     >
-      <MediaPlayer
-        ref={playerRef}
-        src={src}
-        title={title}
-        aspectRatio="16/9"
-        playsInline
-        onPlay={() => setIsPaused(false)}
-        onPause={() => setIsPaused(true)}
-        keyDisabled={true}
-        id={`player-${id}`}
-        onCanPlay={() => setIsSourceLoaded(true)}
-      >
-        <MediaProvider />
-        <DefaultVideoLayout {...customLayoutProps} thumbnails="" />
-      </MediaPlayer>
+      {isVisible && (
+        <MediaPlayer
+          ref={playerRef}
+          src={src}
+          title={title}
+          aspectRatio="16/9"
+          playsInline
+          onPlay={() => setIsPaused(false)}
+          onPause={() => setIsPaused(true)}
+          keyDisabled={true}
+          id={`player-${id}`}
+          onCanPlay={() => setIsSourceLoaded(true)}
+        >
+          <MediaProvider />
+          <DefaultVideoLayout {...customLayoutProps} thumbnails="" />
+        </MediaPlayer>
+      )}
       {isPaused && isSourceLoaded && (
         <div
           className="absolute inset-0 items-center justify-center bg-black/30 transition-opacity group-hover:bg-black/40 cursor-pointer hidden md:flex"
