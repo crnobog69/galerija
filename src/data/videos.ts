@@ -44,6 +44,13 @@ export const videos: Video[] = [
   {
     id: "6",
     title: "Токијски Злодух",
+    description: "arima3.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima3.mp4",
+  },
+  {
+    id: "6",
+    title: "Токијски Злодух",
     description: "kaneki1.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kaneki1.mp4",
@@ -199,5 +206,26 @@ export const videos: Video[] = [
     description: "goblinslayer.mp4",
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/goblinslayer.mp4?t=2024-12-31T21%3A44%3A36.404Z",
+  },
+  {
+    id: "29",
+    title: "из",
+    description: "iz.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/iz.mp4?t=2025-01-05T12%3A42%3A51.812Z",
+  },
+  {
+    id: "30",
+    title: "Деран не сања",
+    description: "bgs.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs.mp4?t=2025-01-05T12%3A47%3A56.411Z",
+  },
+  {
+    id: "31",
+    title: "Деран не сања",
+    description: "bgs2.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs.mp4?t=2025-01-05T12%3A47%3A56.411Z",
   },
 ];
