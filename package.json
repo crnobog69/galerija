@@ -19,7 +19,7 @@
     "@types/react-dom": "^19.0.2",
     "@vidstack/react": "^1.12.12",
     "astro": "^5.1.1",
-    "lucide-react": "^0.469.0",
+    "lucide-react": "^0.471.0",
     "motion": "^11.15.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
