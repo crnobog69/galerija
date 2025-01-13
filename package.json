@@ -16,7 +16,7 @@
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/inter": "^5.0.17",
     "@types/react": "^18.0.0",
-    "@types/react-dom": "^18.0.0",
+    "@types/react-dom": "^19.0.1",
     "@vidstack/react": "^1.12.12",
     "astro": "^5.1.1",
     "lucide-react": "^0.471.0",
