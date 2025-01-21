@@ -296,6 +296,6 @@ export const videos: Video[] = [
     title: "Дакле Пуномоћник",
     description: "ergoproxy.mp4",
     videoSrc:
-      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ergoproxy.mp4",
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ergoproxy.mp4?t=2025-01-21T23%3A30%3A26.578Z",
   },
 ];
