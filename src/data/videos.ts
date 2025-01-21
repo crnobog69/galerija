@@ -291,4 +291,11 @@ export const videos: Video[] = [
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/chainsawman2.mp4",
   },
+  {
+    id: "42",
+    title: "Дакле Пуномоћник",
+    description: "ergoproxy.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/ergoproxy.mp4",
+  },
 ];
