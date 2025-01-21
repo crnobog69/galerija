@@ -256,4 +256,32 @@ export const videos: Video[] = [
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bgs2.mp4",
   },
+  {
+    id: "37",
+    title: "Човек Тестера",
+    description: "chainsawman.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/chainsawman.mp4",
+  },
+  {
+    id: "38",
+    title: "Избељивач",
+    description: "bleach.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/bleach.mp4",
+  },
+  {
+    id: "39",
+    title: "Куросава",
+    description: "kurosawa1.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kurosawa1.mp4",
+  },
+  {
+    id: "40",
+    title: "Куросава",
+    description: "kurosawa2.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/kurosawa2.mp4",
+  },
 ];
