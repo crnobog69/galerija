@@ -312,4 +312,18 @@ export const videos: Video[] = [
     videoSrc:
       "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/arima7.mp4",
   },
+  {
+    id: "45",
+    title: "Свезнајући Поглед Читаоца",
+    description: "orv1.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/orv1.mp4",
+  },
+  {
+    id: "46",
+    title: "Свезнајући Поглед Читаоца",
+    description: "orv2.mp4",
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/orv2.mp4",
+  },
 ];
