@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import VideoContainer from '../components/ui/VideoContainer.astro';
-import { VideoPlayer } from '../components/VideoPlayer';
+import Layout from "../layouts/Layout.astro";
+import VideoContainer from "../components/ui/VideoContainer.astro";
+import { VideoPlayer } from "../components/VideoPlayer";
 import { videos } from "../data/videos";
-import Container from '../components/ui/Container.astro';
+import Container from "../components/ui/Container.astro";
 
 const title = "Видео";
 ---
@@ -11,31 +11,35 @@ const title = "Видео";
 <Layout title={title}>
   <Container>
     <main class="py-8">
-      <h1 class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white">
-        Видео <br class="md:hidden"/> библиотека
+      <h1
+        class="text-4xl font-bold tracking-tight mb-8 text-zinc-900 dark:text-white"
+      >
+        Видео <br class="md:hidden" /> Библиотека
       </h1>
       <VideoContainer>
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 -mx-4 md:mx-0">
-          {videos.map((video) => (
-            <div class="w-full bg-zinc-100 dark:bg-black rounded-lg shadow-xs border-[0.5px] border-zinc-200/50 dark:border-zinc-800/50">
-              <div class="aspect-video bg-zinc-200 dark:bg-zinc-800/50">
-                <VideoPlayer 
-                  src={video.videoSrc}
-                  title={video.id}
-                  id={video.id}
-                  client:visible
-                />
+          {
+            videos.map((video) => (
+              <div class="w-full bg-zinc-100 dark:bg-black rounded-lg shadow-xs border-[0.5px] border-zinc-200/50 dark:border-zinc-800/50">
+                <div class="aspect-video bg-zinc-200 dark:bg-zinc-800/50">
+                  <VideoPlayer
+                    src={video.videoSrc}
+                    title={video.id}
+                    id={video.id}
+                    client:visible
+                  />
+                </div>
+                <div class="p-3.5">
+                  <h2 class="font-medium text-lg text-zinc-900 dark:text-zinc-50">
+                    {video.title}
+                  </h2>
+                  <p class="mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                    {video.description}
+                  </p>
+                </div>
               </div>
-              <div class="p-3.5">
-                <h2 class="font-medium text-lg text-zinc-900 dark:text-zinc-50">
-                  {video.title}
-                </h2>
-                <p class="mt-1.5 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                  {video.description}
-                </p>
-              </div>
-            </div>
-          ))}
+            ))
+          }
         </div>
       </VideoContainer>
     </main>
@@ -43,7 +47,6 @@ const title = "Видео";
 </Layout>
 
 <style>
-
   ::-webkit-scrollbar {
     width: 8px;
   }
@@ -53,19 +56,19 @@ const title = "Видео";
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: rgb(161 161 170); 
+    background-color: rgb(161 161 170);
     border-radius: 4px;
   }
 
   @media (prefers-color-scheme: dark) {
     ::-webkit-scrollbar-thumb {
-      background-color: rgb(113 113 122); 
+      background-color: rgb(113 113 122);
     }
   }
 
   @media (prefers-color-scheme: light) {
     ::-webkit-scrollbar-thumb {
-      background-color: rgb(212 212 216); 
+      background-color: rgb(212 212 216);
     }
   }
 </style>
