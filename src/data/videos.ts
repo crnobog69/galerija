@@ -351,6 +351,7 @@ export const videos: Video[] = [
     id: "50",
     title: "Бело",
     description: "belo.mp4",
-    videoSrc: "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/belo.mp4",
-  }
+    videoSrc:
+      "https://vzbsygkonwqvfrqkphuh.supabase.co/storage/v1/object/public/cgalerija/videos/belo.mp4",
+  },
 ];
